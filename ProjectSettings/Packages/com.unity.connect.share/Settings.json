@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Volumes/Macintosh/!PROJECTS/UNITY6MY/TopDownEngine/Test_TopDownEngine/Builds/3;/Volumes/Macintosh/!PROJECTS/UNITY6MY/TopDownEngine/Test_TopDownEngine/Builds/2;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Volumes/Macintosh/!PROJECTS/TD/Builds/WebGL/1;/Volumes/Macintosh/!PROJECTS/UNITY6MY/TopDownEngine/Test_TopDownEngine/Builds/3;/Volumes/Macintosh/!PROJECTS/UNITY6MY/TopDownEngine/Test_TopDownEngine/Builds/2;;;;;;;\"}"
             }
         ]
     }

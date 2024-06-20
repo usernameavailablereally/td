@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 #SourceTree manually added 
 .idea/*
+connectwebgl.zip
+webgl_sharing
+Settings.json
