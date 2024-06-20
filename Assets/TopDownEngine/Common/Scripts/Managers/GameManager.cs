@@ -146,7 +146,7 @@ namespace MoreMountains.TopDownEngine
 	{
 		/// the target frame rate for the game
 		[Tooltip("the target frame rate for the game")]
-		public int TargetFrameRate = 300;
+		private int TargetFrameRate = 60;
 		[Header("Lives")]
 		/// the maximum amount of lives the character can currently have
 		[Tooltip("the maximum amount of lives the character can currently have")]
