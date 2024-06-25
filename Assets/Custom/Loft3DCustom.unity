@@ -7806,8 +7806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: e518c77d3feaef5448d8b1b12774f52e, type: 2}
-  _triggerCode: 98
-  _stopTriggerCode: 110
+  _triggerCode: 110
+  _stopTriggerCode: 109
   _bgMusic: {fileID: 649741745}
   _ui: {fileID: 870096666}
 --- !u!4 &729952792
@@ -13306,7 +13306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330813b7332ac9b4d96bf28d0dacd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Motion: {x: 0, y: 0, z: -0.01}
 --- !u!143 &1322850067
 CharacterController:
   m_ObjectHideFlags: 0
