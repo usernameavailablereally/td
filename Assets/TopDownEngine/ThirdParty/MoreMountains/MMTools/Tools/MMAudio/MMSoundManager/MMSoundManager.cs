@@ -50,7 +50,16 @@ namespace MoreMountains.Tools
 		
 		/// the possible ways to manage a track
 		public enum MMSoundManagerTracks { Sfx, Music, UI, Master, Other}
-        
+
+		public struct TracksPitch
+		{
+			public float? Sfx;
+			public float? Music;
+			public float? UI; 
+			public float? Master;
+			public float? Other;
+		}
+
 		[Header("Settings")]
 		/// the current sound settings 
 		[Tooltip("the current sound settings ")]
@@ -113,7 +122,34 @@ namespace MoreMountains.Tools
 		}
         
 		#endregion
-        
+
+		#region SetPitch
+		private const int TracksMaxCount = 10;
+		private Dictionary<MMSoundManagerTracks, float> _overrides = new(TracksMaxCount);
+
+		public void SetPitch(float pitch, TracksPitch optionalOverrides = default)
+		{
+			FetchOverrides(optionalOverrides);
+
+			for (var index = 0; index < _sounds.Count; index++)
+			{
+				var sound = _sounds[index];
+				float desiredPitch = _overrides.ContainsKey(sound.Track) ? _overrides[sound.Track] : pitch;
+				sound.Source.pitch = desiredPitch;
+			}
+		}
+
+		private void FetchOverrides(TracksPitch optionalOverrides)
+		{
+			_overrides.Clear();
+			if(optionalOverrides.Sfx.HasValue) _overrides.Add(MMSoundManagerTracks.Master, optionalOverrides.Sfx.Value);
+			if(optionalOverrides.Music.HasValue) _overrides.Add(MMSoundManagerTracks.Master, optionalOverrides.Music.Value);
+			if(optionalOverrides.UI.HasValue) _overrides.Add(MMSoundManagerTracks.Master, optionalOverrides.UI.Value);
+			if(optionalOverrides.Master.HasValue) _overrides.Add(MMSoundManagerTracks.Master, optionalOverrides.Master.Value);
+			if(optionalOverrides.Other.HasValue) _overrides.Add(MMSoundManagerTracks.Master, optionalOverrides.Other.Value);
+		}
+		#endregion
+
 		#region PlaySound
 
 		/// <summary>
