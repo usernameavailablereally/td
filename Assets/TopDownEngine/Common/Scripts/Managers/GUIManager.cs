@@ -21,6 +21,9 @@ namespace MoreMountains.TopDownEngine
 		/// the health bars to update
 		[Tooltip("the health bars to update")]
 		public MMProgressBar[] HealthBars;
+		/// the health bars to update
+		[Tooltip("the noise bars to update")]
+		public MMProgressBar[] NoiseBars;
 		/// the dash bars to update
 		[Tooltip("the dash bars to update")]
 		public MMRadialProgressBar[] DashBars;
@@ -284,6 +287,25 @@ namespace MoreMountains.TopDownEngine
 				if (healthBar.PlayerID == playerID)
 				{
 					healthBar.UpdateBar(currentHealth,minHealth,maxHealth);
+				}
+			}
+
+		}	
+		
+		/// <summary>
+		/// Updates the noise bar.
+		/// </summary>
+		public virtual void UpdateNoiseBar(float currentNoise, float minNoise, float maxNoise, string playerID)
+		{
+			if (HealthBars == null) { return; }
+			if (HealthBars.Length <= 0)	{ return; }
+
+			foreach (MMProgressBar noiseBar in NoiseBars)
+			{
+				if (noiseBar == null) { continue; }
+				if (noiseBar.PlayerID == playerID)
+				{
+					noiseBar.UpdateBar(currentNoise, minNoise, maxNoise);
 				}
 			}
 
