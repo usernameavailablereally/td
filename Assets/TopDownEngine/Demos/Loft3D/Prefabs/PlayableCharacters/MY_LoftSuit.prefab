@@ -11056,6 +11056,21 @@ MonoBehaviour:
   SilentStates: 0100000005000000
   NoisyStates: 03000000040000000c000000090000000a000000
   AlarmStates: 0c000000
+  NoisesQualifier:
+  - MovementState: 1
+    NoiseFactor: 0
+  - MovementState: 5
+    NoiseFactor: 0
+  - MovementState: 3
+    NoiseFactor: 3
+  - MovementState: 4
+    NoiseFactor: 6
+  - MovementState: 9
+    NoiseFactor: 6
+  - MovementState: 10
+    NoiseFactor: 4
+  - MovementState: 12
+    NoiseFactor: 30
 --- !u!1 &1414199094847710
 GameObject:
   m_ObjectHideFlags: 0
