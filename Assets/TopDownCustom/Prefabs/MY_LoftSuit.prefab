@@ -10409,7 +10409,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &54670654311507986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11050,12 +11050,6 @@ MonoBehaviour:
   BlockingWeaponStates: 
   NoiseCollider: {fileID: 1173671863646115262}
   TargetCheckFrequency: 1
-  MaxNoise: 30
-  NoisyValueFactor: 3
-  AlarmValueFactor: 30
-  SilentStates: 0100000005000000
-  NoisyStates: 03000000040000000c000000090000000a000000
-  AlarmStates: 0c000000
   NoisesQualifier:
   - MovementState: 1
     NoiseFactor: 0
@@ -11071,6 +11065,7 @@ MonoBehaviour:
     NoiseFactor: 4
   - MovementState: 12
     NoiseFactor: 30
+  MaxNoise: 30
 --- !u!1 &1414199094847710
 GameObject:
   m_ObjectHideFlags: 0

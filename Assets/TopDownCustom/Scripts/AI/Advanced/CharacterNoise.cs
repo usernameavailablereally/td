@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 
 namespace MoreMountains.TopDownEngine
@@ -16,17 +17,10 @@ namespace MoreMountains.TopDownEngine
 		public SphereCollider NoiseCollider; 
 		[Tooltip("the frequency (in seconds) at which to check for obstacles")]
 		public float TargetCheckFrequency = 1f;
+		public NoiseQualifier[] NoisesQualifier;
+		
 		[Tooltip("Maximum noise value")]
 		public float MaxNoise; 
-		[Tooltip("Noisy value factor")]
-		public float NoisyValueFactor; 
-		[Tooltip("Alarm value factor")]
-		public float AlarmValueFactor; 
-		
-		public CharacterStates.MovementStates[] SilentStates;
-		public CharacterStates.MovementStates[] NoisyStates;
-		public CharacterStates.MovementStates[] AlarmStates;
-		public NoiseQualifier[] NoisesQualifier;
 		
 		[System.Serializable]
 		public class NoiseQualifier
@@ -34,6 +28,7 @@ namespace MoreMountains.TopDownEngine
 			public CharacterStates.MovementStates MovementState;
 			public float NoiseFactor;
 		}
+		
 		
 		private float _initialNoiseRadius;
  
@@ -59,7 +54,7 @@ namespace MoreMountains.TopDownEngine
 					if (handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponStart ||
 					    handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponUse)
 					{
-						SetNoiseLevel(AlarmValueFactor);
+						SetNoiseLevel(NoisesQualifier.First(qualifier => qualifier.MovementState == CharacterStates.MovementStates.Attacking).NoiseFactor);
 						return;
 					}
 				}
@@ -73,7 +68,8 @@ namespace MoreMountains.TopDownEngine
 
 			_lastTargetCheckTimestamp = Time.time;
 
-			NoiseQualifier noiseQualifier = NoisesQualifier.First(qualifier => qualifier.MovementState == _movement.CurrentState);
+			NoiseQualifier noiseQualifier = NoisesQualifier.FirstOrDefault(qualifier => qualifier.MovementState == _movement.CurrentState);
+			if (noiseQualifier != null)
 			{
 				SetNoiseLevel(noiseQualifier.NoiseFactor);
 			}

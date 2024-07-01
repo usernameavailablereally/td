@@ -129,12 +129,18 @@ namespace MoreMountains.TopDownEngine
 				{
 					_brain.Target = t;
 					_lastReturnValue = true;
+					ProcessFoundTransform(t);
 					return true;
 				}
 			}
 
 			_lastReturnValue = false;
 			return false;
+		}
+
+		protected virtual void ProcessFoundTransform(Transform target)
+		{
+			
 		}
 
 		/// <summary>
