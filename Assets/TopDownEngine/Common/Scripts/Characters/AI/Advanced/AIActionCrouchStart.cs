@@ -12,8 +12,11 @@ namespace MoreMountains.TopDownEngine
 	//[RequireComponent(typeof(CharacterCrouch))]
 	public class AIActionCrouchStart : AIAction
 	{
+		[SerializeField] private bool _disableWeapon = false;
+
 		protected CharacterCrouch _characterCrouch;
 		protected Character _character;
+		protected CharacterHandleWeapon _handleWeapon;
 
 		/// <summary>
 		/// Grabs dependencies
@@ -24,6 +27,7 @@ namespace MoreMountains.TopDownEngine
 			base.Initialization();
 			_character = this.gameObject.GetComponentInParent<Character>();
 			_characterCrouch = _character?.FindAbility<CharacterCrouch>();
+			_handleWeapon = gameObject.GetComponentInParent<Character>()?.FindAbility<CharacterHandleWeapon>();            
 		}
 
 		/// <summary>
