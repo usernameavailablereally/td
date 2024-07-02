@@ -13678,12 +13678,12 @@ MonoBehaviour:
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 19201
-  VisionRadius: 13.38
+  VisionRadius: 14.3
   VisionAngle: 79
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 0.2, z: 0}
   ShouldScanForTargets: 1
   TargetMask:
     serializedVersion: 2
