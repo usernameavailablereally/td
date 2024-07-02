@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TD.Public;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,6 +27,8 @@ namespace MoreMountains.Tools
 		/// the current target
 		[MMReadOnly]
 		public Transform Target;
+
+		public TD.Public.AICoverData CoverData { get; } = new();
 		/// the last known world position of the target
 		[MMReadOnly]
 		public Vector3 _lastKnownTargetPosition = Vector3.zero;

@@ -17,6 +17,7 @@ namespace MoreMountains.Tools
 		[Tooltip("a label you can set to organize your AI Decisions, not used by anything else")]
 		public string Label;
 		public virtual bool DecisionInProgress { get; set; }
+		public virtual bool LastResult { get; set; }
 		protected AIBrain _brain;
         
 		/// <summary>
@@ -25,6 +26,12 @@ namespace MoreMountains.Tools
 		protected virtual void Awake()
 		{
 			_brain = this.gameObject.GetComponentInParent<AIBrain>();
+		}
+
+		public virtual bool PerformDecision()
+		{
+			LastResult = Decide();
+			return LastResult;
 		}
 
 		/// <summary>

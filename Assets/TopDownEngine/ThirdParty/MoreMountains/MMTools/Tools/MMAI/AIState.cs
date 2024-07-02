@@ -108,7 +108,7 @@ namespace MoreMountains.Tools
 			{
 				if (Transitions[i].Decision != null)
 				{
-					if (Transitions[i].Decision.Decide())
+					if (Transitions[i].Decision.PerformDecision())
 					{
 						if (!string.IsNullOrEmpty(Transitions[i].TrueState))
 						{
