@@ -7348,16 +7348,6 @@ MonoBehaviour:
       - Decision: {fileID: 4290540245632864893}
         TrueState: Patrolling
         FalseState: 
-  - StateName: BackToPatrolling
-    Actions:
-      array:
-      - {fileID: 2513877145487979757}
-      - {fileID: 464290558846466211}
-    Transitions:
-      array:
-      - Decision: {fileID: 4290540245632864893}
-        TrueState: Patrolling
-        FalseState: 
   TimeInThisState: 0
   Target: {fileID: 0}
   _lastKnownTargetPosition: {x: 0, y: 0, z: 0}
