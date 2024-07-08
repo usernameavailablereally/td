@@ -22114,6 +22114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MY_LoftSuit
       objectReference: {fileID: 0}
+    - target: {fileID: 1414176428383784, guid: 7df88735ba22f4a49b7ea94fbc59a30b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4699950635495296, guid: 7df88735ba22f4a49b7ea94fbc59a30b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
