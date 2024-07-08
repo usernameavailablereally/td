@@ -58,7 +58,8 @@ namespace MoreMountains.TopDownEngine
 
 			foreach (CharacterHandleWeapon handleWeapon in _handleWeaponList)
 			{
-				if (handleWeapon.CurrentWeapon != null)
+				if (handleWeapon.CurrentWeapon != null &&
+				    handleWeapon.CurrentWeapon.IsSilent == false)
 				{
 					if (handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponStart ||
 					    handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponUse)

@@ -6329,6 +6329,7 @@ MonoBehaviour:
   DelayBeforeUseReleaseInterruption: 0
   TimeBetweenUses: 0
   TimeBetweenUsesReleaseInterruption: 0
+  IsSilent: 1
   UseBurstMode: 0
   BurstLength: 3
   BurstTimeBetweenShots: 0.1

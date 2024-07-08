@@ -46,6 +46,9 @@ namespace MoreMountains.TopDownEngine
 		/// whether or not the time between uses can be interrupted by releasing the shoot button (if true, releasing the button will cancel the time between uses)
 		[Tooltip("whether or not the time between uses can be interrupted by releasing the shoot button (if true, releasing the button will cancel the time between uses)")]
 		public bool TimeBetweenUsesReleaseInterruption = true;
+		/// if this is true, the weapon won't produce any sound for AI
+		[Tooltip("if this is true, the weapon won't produce any sound for AI")]
+		public bool IsSilent = false;
 
 		[Header("Burst Mode")] 
 		/// if this is true, the weapon will activate repeatedly for every shoot request
