@@ -39,8 +39,14 @@ namespace MoreMountains.TopDownEngine
 		{
 			base.OnEnable();
 			_initialNoiseRadius = NoiseCollider.radius;
+		}
+
+		protected override void Initialization()
+		{
+			base.Initialization();
 			SetNoiseLevel(0);
 		}
+
 		public override void ProcessAbility()
 		{
 			base.ProcessAbility();
