@@ -13402,15 +13402,15 @@ MonoBehaviour:
   CycleOption: 1
   LoopInitialMovementDirection: 0
   PathElements:
-  - PathElementPosition: {x: 0, y: 0.05, z: 4}
+  - PathElementPosition: {x: 0.36437154, y: 0, z: 0.39138412}
     Delay: 0.5
-  - PathElementPosition: {x: 0, y: 0, z: 0.5}
+  - PathElementPosition: {x: 0.37701058, y: 0, z: 10.924843}
     Delay: 0
   ReferenceMMPath: {fileID: 0}
   AbsoluteReferencePath: 0
   MinDistanceToGoal: 0.5
   LockHandlesOnXAxis: 0
-  LockHandlesOnYAxis: 0
+  LockHandlesOnYAxis: 1
   LockHandlesOnZAxis: 0
 --- !u!114 &6163397413776829567
 MonoBehaviour:

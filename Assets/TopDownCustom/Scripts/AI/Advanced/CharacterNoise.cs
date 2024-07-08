@@ -13,8 +13,10 @@ namespace MoreMountains.TopDownEngine
 		/// This method is only used to display a helpbox text at the beginning of the ability's inspector
 		public override string HelpBoxText() { return "This component allows your character to make noise"; }
 
-		[Tooltip("the object we want")]
+		[Tooltip("Collider of the noise area")]
 		public SphereCollider NoiseCollider; 
+		[Tooltip("Visualization transform of the noise area")]
+		public Transform NoiseVisialization; 
 		[Tooltip("the frequency (in seconds) at which to check for obstacles")]
 		public float TargetCheckFrequency = 1f;
 		public NoiseQualifier[] NoisesQualifier;
@@ -37,6 +39,7 @@ namespace MoreMountains.TopDownEngine
 		{
 			base.OnEnable();
 			_initialNoiseRadius = NoiseCollider.radius;
+			SetNoiseLevel(0);
 		}
 		public override void ProcessAbility()
 		{
@@ -81,6 +84,9 @@ namespace MoreMountains.TopDownEngine
 			NoiseCollider.enabled = level > 0;
 			float targetValue = _initialNoiseRadius * _characterMovement.MovementSpeed * level;
 			NoiseCollider.radius = Mathf.Clamp(targetValue, 0, MaxNoise);
+			Vector3 currentVisualizationScale = NoiseVisialization.localScale;
+			currentVisualizationScale.x = currentVisualizationScale.z = NoiseCollider.radius * 2;
+			NoiseVisialization.localScale = currentVisualizationScale;
 			GUIManager.Instance.UpdateNoiseBar(NoiseCollider.radius, 0f, MaxNoise, _character.PlayerID);
 		}
 	}
