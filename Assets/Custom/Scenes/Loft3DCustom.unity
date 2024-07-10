@@ -7781,55 +7781,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2132327445}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &729952790
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 729952792}
-  - component: {fileID: 729952791}
-  m_Layer: 0
-  m_Name: SlowMo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &729952791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729952790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8155c8f11bda84148a23ccc252fe602f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: e518c77d3feaef5448d8b1b12774f52e, type: 2}
-  _triggerCode: 110
-  _stopTriggerCode: 109
-  _bgMusic: {fileID: 649741745}
-  _ui: {fileID: 870096666}
---- !u!4 &729952792
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729952790}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &730255361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21376,6 +21327,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e675f93e424248e44a00d4cbfde67eaa, type: 3}
+--- !u!1001 &6827950657608356636
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898083533375680117, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036734930340996496, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: _ui
+      value: 
+      objectReference: {fileID: 870096666}
+    - target: {fileID: 7036734930340996496, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: _bgMusic
+      value: 
+      objectReference: {fileID: 649741745}
+    - target: {fileID: 7084683234451942714, guid: 13de6e2c2e7c381448e430e09428d71d,
+        type: 3}
+      propertyPath: m_Name
+      value: SlowMo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13de6e2c2e7c381448e430e09428d71d, type: 3}
 --- !u!1001 &6884891276242282067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21471,5 +21500,5 @@ SceneRoots:
   - {fileID: 1322850070}
   - {fileID: 1507073264}
   - {fileID: 1267291901}
-  - {fileID: 729952792}
+  - {fileID: 6827950657608356636}
   - {fileID: 3886907960272182758}
