@@ -14,7 +14,6 @@ public class WeaponAttachmentCrouch : MonoBehaviour
     {
         var character = gameObject.GetComponentInParent<Character>();
         _movement = character.MovementState;
-        Debug.Log(character.SendStateChangeEvents);
         _movement.OnStateChange += OnMovementStateChanged;
     }
 

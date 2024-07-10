@@ -28,18 +28,16 @@ public class TargetFinder<T> where T: Component
     {
         result = null;
 
-        // float raycastOrigin = _collider.bounds.center + DetectionOriginOffset / 2;
-
         if (targets.Count == 0)
         {
             return false;
         }
 
         SortRaycastTargets(search, targets);
-        return TryGetOnObscured(search, targets, out result);
+        return TryGetUnobscured(search, targets, out result);
     }
 
-    private bool TryGetOnObscured(TargetSearchParams search, List<T> targets, out T result)
+    private bool TryGetUnobscured(TargetSearchParams search, List<T> targets, out T result)
     {
         for (int index = 0; index < targets.Count; index++)
         {
@@ -51,8 +49,8 @@ public class TargetFinder<T> where T: Component
                 continue;
             }
             
-            RaycastHit hit = MMDebug.Raycast3D(search.SearchStart, raycastDirection, raycastDirection.magnitude,
-                search.ObstacleMask, Color.yellow, true);
+            RaycastHit hit = MMDebug.Raycast3D(search.TargetPosition, raycastDirection.normalized, raycastDirection.magnitude,
+                search.ObstacleMask, Color.magenta, true);
 
             if (hit.collider == null)
             {

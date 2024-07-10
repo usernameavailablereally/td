@@ -259,11 +259,12 @@ MonoBehaviour:
   DelayBeforeUseReleaseInterruption: 1
   TimeBetweenUses: 0.4
   TimeBetweenUsesReleaseInterruption: 1
+  IsSilent: 0
   UseBurstMode: 0
   BurstLength: 3
   BurstTimeBetweenShots: 0.1
   MagazineBased: 1
-  MagazineSize: 1
+  MagazineSize: 5
   AutoReload: 0
   NoInputReload: 0
   ReloadTime: 2
@@ -406,7 +407,7 @@ MonoBehaviour:
   LaserMaxDistance: 50
   LaserCollisionMask:
     serializedVersion: 2
-    m_Bits: 1057536
+    m_Bits: 1058560
   LaserWidth: {x: 0.01, y: 0.01}
   LaserMaterial: {fileID: 2100000, guid: 41fcf89824cad6c40a3efec451bb197f, type: 2}
 --- !u!114 &114591608567984394

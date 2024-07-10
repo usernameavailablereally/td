@@ -87,7 +87,7 @@ namespace MoreMountains.TopDownEngine
 
 		private void SetNoiseLevel(float level)
 		{
-			Debug.Log($"SetNoiseLevel {level}");
+			// Debug.Log($"SetNoiseLevel {level}");
 			NoiseCollider.enabled = level > 0;
 			float targetValue = _initialNoiseRadius * _characterMovement.MovementSpeed * level;
 			NoiseCollider.radius = Mathf.Clamp(targetValue, 0, MaxNoise);

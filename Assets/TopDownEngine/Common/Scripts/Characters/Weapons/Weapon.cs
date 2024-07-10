@@ -681,6 +681,26 @@ namespace MoreMountains.TopDownEngine
 			}
 		}
 
+		public virtual bool IsReloadNeeded()
+		{
+			if (MagazineBased)
+			{
+				if (WeaponAmmo != null)
+				{
+					return WeaponAmmo.EnoughAmmoToFire();
+				}
+
+				return !AutoReload && CurrentAmmoLoaded <= 0;
+			}
+
+			if (WeaponAmmo != null)
+			{
+				return WeaponAmmo.EnoughAmmoToFire();
+			}
+
+			return true;
+		}
+
 		public virtual void ShootRequest()
 		{
 			// if we have a weapon ammo component, we determine if we have enough ammunition to shoot

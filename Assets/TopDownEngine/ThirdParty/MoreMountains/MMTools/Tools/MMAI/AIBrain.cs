@@ -54,6 +54,8 @@ namespace MoreMountains.Tools
 		[MMVector("min","max")]
 		public Vector2 RandomDecisionFrequency = new Vector2(0.5f, 1f);
 
+		public bool LogStatesChange = false;
+
 		protected AIDecision[] _decisions;
 		protected AIAction[] _actions;
 		protected float _lastActionsUpdate = 0f;
@@ -147,6 +149,11 @@ namespace MoreMountains.Tools
 		/// <param name="newStateName"></param>
 		public virtual void TransitionToState(string newStateName)
 		{
+			if (LogStatesChange)
+			{
+				Debug.Log($"TransitionToState from ({CurrentState?.StateName}) to ({newStateName})");
+			}
+
 			if (CurrentState == null)
 			{
 				CurrentState = FindState(newStateName);

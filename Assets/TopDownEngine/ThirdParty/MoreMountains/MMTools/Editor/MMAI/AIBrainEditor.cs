@@ -21,6 +21,7 @@ namespace MoreMountains.Tools
 		protected SerializedProperty _randomizeFrequencies;
 		protected SerializedProperty _randomActionFrequency;
 		protected SerializedProperty _randomDecisionFrequency;
+		protected SerializedProperty _logStatesChange;
 
 		protected virtual void OnEnable()
 		{
@@ -40,6 +41,7 @@ namespace MoreMountains.Tools
 			_randomizeFrequencies = serializedObject.FindProperty("RandomizeFrequencies");
 			_randomActionFrequency = serializedObject.FindProperty("RandomActionFrequency");
 			_randomDecisionFrequency = serializedObject.FindProperty("RandomDecisionFrequency");
+			_logStatesChange = serializedObject.FindProperty("LogStatesChange");
 		}
 
 		public override void OnInspectorGUI()
@@ -56,6 +58,7 @@ namespace MoreMountains.Tools
 			EditorGUILayout.PropertyField(_actionsFrequency);
 			EditorGUILayout.PropertyField(_decisionFrequency);
 			EditorGUILayout.PropertyField(_randomizeFrequencies);
+			EditorGUILayout.PropertyField(_logStatesChange);
 			if (_randomizeFrequencies.boolValue)
 			{
 				EditorGUILayout.PropertyField(_randomActionFrequency);

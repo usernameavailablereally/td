@@ -18,6 +18,8 @@ namespace MoreMountains.TopDownEngine
 		[Tooltip("the offset to apply (from the collider's center) when casting a ray from the agent to its target")]
 		public Vector3 LineOfSightOffset = new Vector3(0, 0, 0);
 
+		public Vector3 TargetOffset = new Vector3(0, 0, 0);
+
 		protected Vector3 _directionToTarget;
 		protected Collider _collider;
 		protected Vector3 _raycastOrigin;
@@ -51,7 +53,7 @@ namespace MoreMountains.TopDownEngine
 			}
 
 			_raycastOrigin = _collider.bounds.center + LineOfSightOffset / 2;
-			_directionToTarget = _brain.Target.transform.position - _raycastOrigin;
+			_directionToTarget = (_brain.Target.transform.position + TargetOffset) - _raycastOrigin;
             
 			RaycastHit hit = MMDebug.Raycast3D(_raycastOrigin, _directionToTarget.normalized, _directionToTarget.magnitude, ObstacleLayerMask, Color.yellow, true);
 			if (hit.collider == null)

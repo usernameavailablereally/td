@@ -18,6 +18,8 @@ namespace MoreMountains.TopDownEngine
 		[Tooltip("The maximum duration, in seconds, after which to return true")]
 		public float AfterTimeMax = 2f;
 
+		public bool LogDetailedTime = false;
+
 		protected float _randomTime;
 
 		/// <summary>
@@ -36,6 +38,12 @@ namespace MoreMountains.TopDownEngine
 		protected virtual bool EvaluateTime()
 		{
 			if (_brain == null) { return false; }
+
+			if (LogDetailedTime)
+			{
+				Debug.Log($"{_brain.TimeInThisState}, {_randomTime}");
+			}
+
 			return (_brain.TimeInThisState >= _randomTime);
 		}
 

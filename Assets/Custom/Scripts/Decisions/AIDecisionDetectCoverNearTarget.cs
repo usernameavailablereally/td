@@ -13,6 +13,7 @@ namespace TD
         [field: SerializeField] float _frequency = 5f;
         [FormerlySerializedAs("_mxDistanceFromPlayer")] [FormerlySerializedAs("_MmxDistanceFromPlayer")] [FormerlySerializedAs("_MaxDistanceFromPlayer")] [field: SerializeField] float _maxDistanceFromPlayer = 15f;
         [field: SerializeField] LayerMask _targetLayerMask = LayerManager.PlayerLayerMask;
+        [field: SerializeField] LayerMask _obstacleLayerMask = LayerManager.ObstaclesLayerMask;
 
         private float timeToDecide;
 
@@ -40,6 +41,7 @@ namespace TD
             {
                 Radius = _radius,
                 TargetLayerMask = _targetLayerMask,
+                ObstacleMask = _obstacleLayerMask,
                 SearchTargetComponentInParent = true,
                 MaxDistanceFromTarget = _maxDistanceFromPlayer
             };
