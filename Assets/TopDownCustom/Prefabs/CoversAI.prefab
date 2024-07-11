@@ -13374,9 +13374,9 @@ MonoBehaviour:
   LoopInitialMovementDirection: 0
   PathElements:
   - PathElementPosition: {x: 0.36437154, y: 0, z: 0.39138412}
-    Delay: 0.5
+    Delay: 3
   - PathElementPosition: {x: 0.37701058, y: 0, z: 10.924843}
-    Delay: 0
+    Delay: 3
   ReferenceMMPath: {fileID: 0}
   AbsoluteReferencePath: 0
   MinDistanceToGoal: 0.5
