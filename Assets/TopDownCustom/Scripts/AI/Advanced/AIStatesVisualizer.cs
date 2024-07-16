@@ -53,6 +53,7 @@ public class AIStatesVisualizer : MonoBehaviour
         if (_statusesPool.Count == 0)
         {
          //   return AIBrain.CurrentState.StateName;
+         return null;
         }
         
         return _statusesPool.Dequeue();

@@ -59,6 +59,10 @@ namespace MoreMountains.TopDownEngine
 				}
 
 				Value = AIStatesVisualizer.DequeueNextStatus();
+				if (Value == null)
+				{
+					return;
+				}
 				_playPosition = (PositionMode == PositionModes.FeedbackPosition) ? Owner.transform.position : TargetTransform.position;
 				MMFloatingTextSpawnEvent.Trigger(ChannelData, _playPosition, Value, Direction, Intensity, ForceLifetime, Lifetime, ForceColor, AnimateColorGradient);
 			}
