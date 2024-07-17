@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoAttributePlayerIDs: 1
   PlayerPrefabs:
-  - {fileID: 114650071556604532, guid: 7df88735ba22f4a49b7ea94fbc59a30b, type: 3}
+  - {fileID: 114650071556604532, guid: 678994d7d1881ba40a18f3ea03fa2b13, type: 3}
   SceneCharacters: []
   InitialSpawnPoint: {fileID: 1618121293}
   CurrentCheckpoint: {fileID: 0}
@@ -11970,7 +11970,7 @@ PrefabInstance:
     - target: {fileID: 4951168892390059897, guid: 6a87b1921aa9c40a788672f6719aafa3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13011,6 +13011,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barrier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811817803284327119, guid: e1f475f98b4bcfb499c5ee370e1bf766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

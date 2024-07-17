@@ -842,7 +842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1296766751478337173}
-  - component: {fileID: 5163915020914529500}
+  - component: {fileID: 6948562715661795201}
   - component: {fileID: 5626759770374493083}
   - component: {fileID: 957728831525957837}
   - component: {fileID: 3712538114161544640}
@@ -875,7 +875,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1627102250995429324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5163915020914529500
+--- !u!114 &6948562715661795201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -884,15 +884,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1214323013815474009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500eec6de7da5b941b00fda076e758ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e4ee5f14d174b5798b7b506990ed048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Label: 
-  ObstacleLayerMask:
+  LayerMask:
     serializedVersion: 2
-    m_Bits: 6464
-  LineOfSightOffset: {x: 0, y: 1.5, z: 0}
-  TargetOffset: {x: 0, y: 0.3, z: 0}
+    m_Bits: 25169216
+  _linesToCast:
+  - OriginOffset: {x: 0, y: 0.7, z: 0}
+    ToOffset: {x: 0, y: 0.7, z: 0}
+  - OriginOffset: {x: 0, y: -0.5, z: 0}
+    ToOffset: {x: 0, y: -0.5, z: 0}
 --- !u!114 &5626759770374493083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12652,7 +12655,7 @@ MonoBehaviour:
     Transitions:
       array:
       - Decision: {fileID: 9010145239798539907}
-        TrueState: SeekingPlayer
+        TrueState: Looking At Target
         FalseState: 
       - Decision: {fileID: 8355002861812630952}
         TrueState: SeekingNoise
@@ -12669,20 +12672,6 @@ MonoBehaviour:
       array:
       - Decision: {fileID: 957728831525957837}
         TrueState: Patrolling
-        FalseState: 
-  - StateName: SeekingPlayer
-    Actions:
-      array:
-      - {fileID: 4419744308983976690}
-      - {fileID: 783357128477135939}
-      - {fileID: 3200202927917804416}
-    Transitions:
-      array:
-      - Decision: {fileID: 5163915020914529500}
-        TrueState: Destroying
-        FalseState: 
-      - Decision: {fileID: 3083162747944276827}
-        TrueState: BackToPatrolling
         FalseState: 
   - StateName: SeekingNoise
     Actions:
@@ -12701,6 +12690,40 @@ MonoBehaviour:
       - Decision: {fileID: 9010145239798539907}
         TrueState: SeekingPlayer
         FalseState: 
+  - StateName: SeekingPlayer
+    Actions:
+      array:
+      - {fileID: 4419744308983976690}
+      - {fileID: 783357128477135939}
+      - {fileID: 3200202927917804416}
+    Transitions:
+      array:
+      - Decision: {fileID: 6948562715661795201}
+        TrueState: Looking At Target
+        FalseState: 
+      - Decision: {fileID: 3083162747944276827}
+        TrueState: BackToPatrolling
+        FalseState: 
+  - StateName: Looking At Target
+    Actions:
+      array:
+      - {fileID: 4419744308983976690}
+      - {fileID: 2646068486438134791}
+    Transitions:
+      array:
+      - Decision: {fileID: 5626759770374493083}
+        TrueState: AggroIfTargetVisible
+        FalseState: 
+  - StateName: AggroIfTargetVisible
+    Actions:
+      array:
+      - {fileID: 4419744308983976690}
+      - {fileID: 2646068486438134791}
+    Transitions:
+      array:
+      - Decision: {fileID: 6948562715661795201}
+        TrueState: Destroying
+        FalseState: BackToPatrolling
   - StateName: Destroying
     Actions:
       array:
@@ -12708,7 +12731,7 @@ MonoBehaviour:
       - {fileID: 7759451245245364009}
     Transitions:
       array:
-      - Decision: {fileID: 5163915020914529500}
+      - Decision: {fileID: 6948562715661795201}
         TrueState: 
         FalseState: SeekingPlayer
       - Decision: {fileID: 5626759770374493083}
@@ -12722,7 +12745,7 @@ MonoBehaviour:
       - {fileID: 3200202927917804416}
     Transitions:
       array:
-      - Decision: {fileID: 5163915020914529500}
+      - Decision: {fileID: 6948562715661795201}
         TrueState: 
         FalseState: 
       - Decision: {fileID: 4835740326344499030}
@@ -12778,7 +12801,7 @@ MonoBehaviour:
       - Decision: {fileID: 9010145239798539907}
         TrueState: 
         FalseState: 
-      - Decision: {fileID: 5163915020914529500}
+      - Decision: {fileID: 6948562715661795201}
         TrueState: Destroying
         FalseState: 
       - Decision: {fileID: 5626759770374493083}
@@ -12791,7 +12814,7 @@ MonoBehaviour:
       - {fileID: 2646068486438134791}
     Transitions:
       array:
-      - Decision: {fileID: 5163915020914529500}
+      - Decision: {fileID: 6948562715661795201}
         TrueState: Covered
         FalseState: Seeking Player
   TimeInThisState: 0
@@ -14155,6 +14178,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConeOfVision
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: Offset.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: TargetOffset.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: ObstacleMask.m_Bits
+      value: 18753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: _linesToCast.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: _linesToCast.Array.data[0].ToOffset.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: _linesToCast.Array.data[1].ToOffset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: _linesToCast.Array.data[0].OriginOffset.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: _linesToCast.Array.data[1].OriginOffset.y
+      value: -1.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
