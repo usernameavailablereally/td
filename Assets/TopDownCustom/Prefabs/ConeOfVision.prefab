@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstacleMask:
     serializedVersion: 2
-    m_Bits: 19201
+    m_Bits: 19200
   VisionRadius: 14.3
   VisionAngle: 79
   Direction: {x: 0, y: 0, z: 0}

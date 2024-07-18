@@ -119,7 +119,7 @@ namespace MoreMountains.Tools
 		{
 			_lastScanTimestamp = Time.time;
 			VisibleTargets.Clear();
-			_targetsWithinDistance = Physics.OverlapSphere(Center, VisionRadius, TargetMask);
+			_targetsWithinDistance = Physics.OverlapSphere(Center, VisionRadius, TargetMask, QueryTriggerInteraction.Collide);
 			foreach (Collider collider in _targetsWithinDistance)
 			{
 				_target = collider.transform;
@@ -256,7 +256,7 @@ namespace MoreMountains.Tools
 			_direction = MMMaths.DirectionFromAngle(angle, 0f);
             
 
-			if (Physics.Raycast(Center, _direction, out _raycastAtAngleHit, VisionRadius, ObstacleMask))
+			if (Physics.Raycast(Center, _direction, out _raycastAtAngleHit, VisionRadius, ObstacleMask, QueryTriggerInteraction.Collide))
 			{
 				_returnRaycastData.Hit = true;
 				_returnRaycastData.Point = _raycastAtAngleHit.point;
