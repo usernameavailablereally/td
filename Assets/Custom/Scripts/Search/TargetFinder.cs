@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using MoreMountains.Tools;
+using TD;
 using UnityEngine;
 
 // ideally this class should replace all searches in written in monobehaviours 
-public class TargetFinder<T> where T: Component
+public class TargetFinder<T> where T: Component, ISearchItem
 {
     private const int MaxOverlap = 10;
     private const int DefaultTargetsSize = MaxOverlap;
@@ -43,6 +44,11 @@ public class TargetFinder<T> where T: Component
         {
             var t = targets[index];
             Vector3 raycastDirection = t.transform.position - search.TargetPosition;
+
+            if (!t.IsDiscoverable())
+            {
+                continue;
+            }
 
             if (Vector3.SqrMagnitude(raycastDirection) > (search.MaxDistanceFromTarget * search.MaxDistanceFromTarget))
             {

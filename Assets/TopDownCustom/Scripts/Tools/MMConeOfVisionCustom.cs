@@ -3,6 +3,7 @@ using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
 using System;
+using TD.Public;
 
 namespace MoreMountains.Tools
 {
@@ -56,7 +57,8 @@ namespace MoreMountains.Tools
 		public Vector3 EulerAngles;
 		public Vector3 Offset;
 		public Vector3 TargetOffset;
-        
+		public List<RaycastLine> _linesToCast;
+
 		[Header("Target scanning")]
 		public bool ShouldScanForTargets = true;
 		public LayerMask TargetMask;
@@ -126,34 +128,57 @@ namespace MoreMountains.Tools
 				Vector3 targetPosition = _target.position + TargetOffset;
 				_directionToTarget = (targetPosition - Center).normalized;
 				float currentAngle = Vector3.Angle(Direction, _directionToTarget);
-				if (currentAngle < VisionAngle / 2f)
-				{
-					_distanceToTarget = Vector3.Distance(Center, targetPosition);
 
-					bool duplicate = false;
-					foreach(Transform visibleTarget in VisibleTargets)
-					{
-						if (visibleTarget == _target)
-						{
-							duplicate = true;
-						}
-					}
+				if (!(currentAngle < VisionAngle / 2f))
+				{
+					continue;
+				}
+
+				_distanceToTarget = Vector3.Distance(Center, targetPosition);
+				bool duplicate = VisibleTargets.Contains(_target);
+
+				if (IsUnObscured() && !duplicate)
+				{
+					VisibleTargets.Add(_target);
+					Debug.Log($"Visual target found");
+				}
+				else
+				{
+					Ray ray = new Ray(Center, _directionToTarget * _distanceToTarget);
+					Physics.Raycast(ray, out var hit);
+					Debug.Log($"Visual target blocked {hit.collider.name} {hit.transform.gameObject.layer}");
+				}
 					
-					if (!Physics.Raycast(Center, _directionToTarget, _distanceToTarget, ObstacleMask) && !duplicate)
-					{
-						Debug.DrawRay(Center, _directionToTarget * _distanceToTarget, Color.blue, 10);
-						VisibleTargets.Add(_target);
-						Debug.Log($"Visual target found");
-					}
-					else
-					{
-						Debug.DrawRay(Center, _directionToTarget * _distanceToTarget, Color.white, 10);
-						Ray ray = new Ray(Center, _directionToTarget * _distanceToTarget);
-						var a = Physics.Raycast(ray, out var hit);
-						Debug.Log($"Visual target blocked {hit.collider.name} {hit.transform.gameObject.layer}");
-					}
+			}
+		}
+
+		protected virtual bool IsUnObscured()
+		{
+			LayerMask mask = ObstacleMask | TargetMask;
+			for (var i = 0; i < _linesToCast.Count; i++)
+			{
+				RaycastLine line = _linesToCast[i];
+				
+				Vector3 raycastOrigin = transform.position + line.OriginOffset;
+				Vector3 directionToTarget = (_target.position + line.ToOffset) - raycastOrigin;
+
+				RaycastHit hit = MMDebug.Raycast3D(
+					raycastOrigin,
+					directionToTarget.normalized,
+					directionToTarget.magnitude,
+					mask,
+					Color.blue,
+					true);
+				
+				Debug.DrawLine(raycastOrigin, raycastOrigin + directionToTarget, Color.black, 10f);
+				
+				if (hit.collider != null && hit.collider.transform == _target)
+				{
+					return true;
 				}
 			}
+
+			return false;
 		}
 
 		protected virtual void DrawMesh()

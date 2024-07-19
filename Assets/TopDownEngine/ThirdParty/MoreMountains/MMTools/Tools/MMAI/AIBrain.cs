@@ -28,7 +28,9 @@ namespace MoreMountains.Tools
 		[MMReadOnly]
 		public Transform Target;
 
+		public AIAAggroConfig AggroConfig;
 		public TD.Public.AICoverData CoverData { get; } = new();
+		public TD.Public.DetectionState Detection { get; private set; }
 		/// the last known world position of the target
 		[MMReadOnly]
 		public Vector3 _lastKnownTargetPosition = Vector3.zero;
@@ -93,6 +95,8 @@ namespace MoreMountains.Tools
 			}
 			_decisions = GetAttachedDecisions();
 			_actions = GetAttachedActions();
+			Detection = new DetectionState(AggroConfig);
+
 			if (RandomizeFrequencies)
 			{
 				ActionsFrequency = Random.Range(RandomActionFrequency.x, RandomActionFrequency.y);

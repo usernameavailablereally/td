@@ -52,9 +52,8 @@ namespace TD
             }
 
             Vector3 targetPosition = _brain.Target.position;
-            _brain.CoverData.CurrentCover = cover;
-            _brain.CoverData.SelectedCrouchPoint = Utils.GetBestCrouchPoint(targetPosition, cover);
-            _brain.CoverData.IsReached = false;
+            Transform crouchPoint = Utils.GetBestCrouchPoint(targetPosition, cover);
+            _brain.CoverData.SelectNew(cover, crouchPoint);
             return true;
         }
 
