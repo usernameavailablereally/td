@@ -1721,8 +1721,8 @@ InputManager:
     m_Name: Player1_CameraRotationAxis
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: l
-    positiveButton: m
+    negativeButton: left alt
+    positiveButton: left ctrl
     altNegativeButton: 
     altPositiveButton: 
     gravity: 10
