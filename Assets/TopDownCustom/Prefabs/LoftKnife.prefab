@@ -6285,6 +6285,7 @@ GameObject:
   - component: {fileID: 3287603734305406517}
   - component: {fileID: 5512498410282625926}
   - component: {fileID: -4606574413719713381}
+  - component: {fileID: 6505553987821376593}
   m_Layer: 10
   m_Name: LoftKnife
   m_TagString: Untagged
@@ -6386,7 +6387,7 @@ MonoBehaviour:
   Flipped: 0
   MeleeDamageAreaMode: 0
   DamageAreaShape: 2
-  AreaOffset: {x: 0, y: 0, z: 0}
+  AreaOffset: {x: 0, y: 0, z: 2}
   AreaSize: {x: 4, y: 2, z: 4}
   TriggerFilter: 195
   HitDamageableFeedback: {fileID: 0}
@@ -6434,19 +6435,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0514d297deadac74fb15a7b7326ff0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimControl: 1
+  AimControl: 3
   AimControlActive: 1
   RotationMode: 0
   WeaponRotationSpeed: 0
   MinimumAngle: -180
   MaximumAngle: 180
   MinimumMagnitude: 0.2
-  ReticleType: 0
-  Reticle: {fileID: 1373789777524232, guid: 65207112181da7b41bee2bb13af8b883, type: 3}
-  ReticleDistance: 0
+  ReticleType: 1
+  Reticle: {fileID: 1000010525066036, guid: 3b9777edd3a020048b1f6e2ba0f2902e, type: 3}
+  ReticleDistance: 1
   ReticleHeight: 0
   ReticleAtMousePosition: 0
-  RotateReticle: 0
+  RotateReticle: 1
   ReplaceMousePointer: 1
   MouseDeadZoneRadius: 0.5
   DisplayReticle: 1
@@ -6483,6 +6484,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6505553987821376593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937242815608515789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0514d297deadac74fb15a7b7326ff0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimControl: 3
+  AimControlActive: 1
+  RotationMode: 0
+  WeaponRotationSpeed: 0
+  MinimumAngle: -180
+  MaximumAngle: 180
+  MinimumMagnitude: 0.2
+  ReticleType: 2
+  Reticle: {fileID: 1373789777524232, guid: 65207112181da7b41bee2bb13af8b883, type: 3}
+  ReticleDistance: 1
+  ReticleHeight: 0
+  ReticleAtMousePosition: 0
+  RotateReticle: 0
+  ReplaceMousePointer: 1
+  MouseDeadZoneRadius: 0.5
+  DisplayReticle: 1
+  MoveCameraTargetTowardsReticle: 0
+  CameraTargetOffset: 0.3
+  CameraTargetMaxDistance: 10
+  CameraTargetSpeed: 5
+  Unrestricted3DAim: 0
+  AimCenter: 0
+  ReticleMovesWithSlopes: 0
+  ReticleObstacleMask:
+    serializedVersion: 2
+    m_Bits: 9
+  MaximumSlopeElevation: 50
+  AvoidNullAim: 1
 --- !u!1 &4366862247003422496
 GameObject:
   m_ObjectHideFlags: 0
