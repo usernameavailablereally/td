@@ -61,7 +61,6 @@ namespace MoreMountains.TopDownEngine
 
             Transform hitTransform = hit.collider?.transform;
 
-            Debug.Log($"Hit object ({hitTransform?.name}), expected target ({_brain.Target?.name}), hit object is target's child {hitTransform?.IsChildOf(_brain.Target)}");
             return hitTransform != null &&
                    (hitTransform == _brain.Target || _brain.Target.IsChildOf(hitTransform));
         }

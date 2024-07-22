@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 1125603653861258610}
   - component: {fileID: 2646068486438134791}
   - component: {fileID: 1227910854739643621}
+  - component: {fileID: 4719932922219062605}
   m_Layer: 13
   m_Name: Actions
   m_TagString: Untagged
@@ -849,6 +850,21 @@ MonoBehaviour:
   InitializationMode: 0
   Label: 
   _lineOfSight: {fileID: 6948562715661795201}
+  _view: {fileID: 2659564640636091405}
+--- !u!114 &4719932922219062605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169738128582594341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881526be7fdc4679af101f2375c0639d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
   _view: {fileID: 2659564640636091405}
 --- !u!1 &1214323013815474009
 GameObject:
@@ -12799,6 +12815,7 @@ MonoBehaviour:
       array:
       - {fileID: 582287627778978218}
       - {fileID: 3200202927917804416}
+      - {fileID: 4719932922219062605}
     Transitions:
       array:
       - Decision: {fileID: 957728831525957837}

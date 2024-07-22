@@ -20,13 +20,12 @@ namespace Custom.Scripts.Decisions
 
         public override void OnEnterState()
         {
-            _brain.Detection.Reset();
+            _brain.Detection.IfTriggeredReduceToNearTriggered();
             _view.SetValue(_brain.Detection.AggroAmount01);
         }
 
         public override void OnExitState()
         {
-            _brain.Detection.Reset();
             _view.SetValue(_brain.Detection.AggroAmount01);
         }
     }
