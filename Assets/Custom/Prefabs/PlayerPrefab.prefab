@@ -10952,8 +10952,8 @@ MonoBehaviour:
   RotationSpace: 0
   RotationForward: {x: 0, y: 0, z: 1}
   RotationAxis: {x: 0, y: 1, z: 0}
-  CameraRotationSpeed: 3
-  CameraInterpolationSpeed: 0.2
+  CameraRotationSpeed: 0.5
+  CameraInterpolationSpeed: 1
   InputAuthorized: 1
   AutoSetupInputManager: 1
 --- !u!114 &8821616259050663653
