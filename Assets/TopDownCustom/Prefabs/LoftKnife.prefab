@@ -6386,15 +6386,15 @@ MonoBehaviour:
   Interruptable: 0
   Flipped: 0
   MeleeDamageAreaMode: 0
-  DamageAreaShape: 2
-  AreaOffset: {x: 0, y: 0, z: 2}
-  AreaSize: {x: 4, y: 2, z: 4}
+  DamageAreaShape: 3
+  AreaOffset: {x: 0, y: 0, z: 0}
+  AreaSize: {x: 3, y: 2, z: 3}
   TriggerFilter: 195
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
   ExistingDamageArea: {fileID: 0}
   InitialDelay: 1
-  ActiveDuration: 0.3
+  ActiveDuration: 0.5
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8448
