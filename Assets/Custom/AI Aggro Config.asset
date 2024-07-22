@@ -13,5 +13,39 @@ MonoBehaviour:
   m_Name: AI Aggro Config
   m_EditorClassIdentifier: 
   <AggroPerSec>k__BackingField: 20
+  <AggroPerSecOnReTrigger>k__BackingField: 60
   <AggroToTriggerAttack>k__BackingField: 60
   <DeAggroPerSec>k__BackingField: 10
+  <Curve>k__BackingField:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2762195
+      value: 0.2762195
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
