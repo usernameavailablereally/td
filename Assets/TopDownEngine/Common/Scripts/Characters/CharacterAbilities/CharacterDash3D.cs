@@ -86,7 +86,8 @@ namespace MoreMountains.TopDownEngine
 		protected int _dashingDirectionYAnimationParameter;
 		protected int _dashingDirectionZAnimationParameter;
 		protected CharacterOrientation3D _characterOrientation3D;
-        
+		private CharacterStates.MovementStates _preDashState;
+
 		/// <summary>
 		/// On init we initialize our cooldown and feedback
 		/// </summary>
@@ -141,6 +142,7 @@ namespace MoreMountains.TopDownEngine
 			}
 			Cooldown.Start();
 
+			_preDashState = _movement.CurrentState;
 			_movement.ChangeState(CharacterStates.MovementStates.Dashing);
 			_dashing = true;
 			_dashTimer = 0f;
@@ -218,7 +220,7 @@ namespace MoreMountains.TopDownEngine
 		public virtual void DashStop()
 		{
 			Cooldown.Stop();
-			_movement.ChangeState(CharacterStates.MovementStates.Idle);
+			_movement.ChangeState(_preDashState);
 			_dashing = false;
 			_controller.FreeMovement = true;
 			DashFeedback?.StopFeedbacks();
