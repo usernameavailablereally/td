@@ -4284,6 +4284,11 @@ PrefabInstance:
       propertyPath: volumeLayer.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114583060187521394, guid: d4529f47989526241929319abfdfc29d,
+        type: 3}
+      propertyPath: ConfineCameraToLevelBounds
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114631977183020318, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
       propertyPath: m_Color.b
