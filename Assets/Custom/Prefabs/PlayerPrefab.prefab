@@ -10642,7 +10642,7 @@ MonoBehaviour:
   CrawlSpeed: 3.5
   ResizeColliderWhenCrouched: 1
   TranslateColliderOnCrouch: 0
-  CrouchedColliderHeight: 0.6
+  CrouchedColliderHeight: 1.1
   ObjectsToOffset:
   - {fileID: 1254771915079489432}
   OffsetCrouch: {x: 0, y: -0.8, z: 0.2}

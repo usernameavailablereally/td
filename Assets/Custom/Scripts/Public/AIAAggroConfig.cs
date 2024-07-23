@@ -9,6 +9,6 @@ namespace TD.Public
         [field: SerializeField] public float AggroPerSecOnReTrigger { get; private set; } = 60f;
         [field: SerializeField] public float AggroToTriggerAttack { get; private set; } = 60f;
         [field: SerializeField] public float DeAggroPerSec { get; private set; } = 10f;
-        [field: SerializeField] public AnimationCurve Curve { get; private set; }
+        [field: SerializeField] public AnimationCurve AggroDistanceCurve { get; private set; }
     }
 }

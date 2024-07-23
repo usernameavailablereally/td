@@ -27,10 +27,13 @@ namespace TD.Public
             SetAggro(AggroAmount - Mathf.Min(_config.AggroPerSec, _config.AggroPerSecOnReTrigger));
         }
 
-        public void UpdateAggro(float duration, bool trigger)
+        public void UpdateAggro(float duration, bool trigger, float distanceCorrelation)
         {
+            float correlationCurved = _config.AggroDistanceCurve.Evaluate(distanceCorrelation);
             WasTriggered = WasTriggered || AggroTresholdReached;
-            float triggeredModifier = WasTriggered ? _config.AggroPerSecOnReTrigger : _config.AggroPerSec; 
+            float triggeredModifier = WasTriggered ? _config.AggroPerSecOnReTrigger : _config.AggroPerSec;
+            triggeredModifier *= correlationCurved;
+
             float modifier = trigger ? triggeredModifier : -_config.DeAggroPerSec;
             SetAggro(AggroAmount + modifier * duration);
 

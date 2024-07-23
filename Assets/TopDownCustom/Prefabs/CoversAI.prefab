@@ -936,6 +936,7 @@ MonoBehaviour:
   Label: 
   _lineOfSight: {fileID: 6948562715661795201}
   _view: {fileID: 2659564640636091405}
+  _maxViewDistance: 13.2
 --- !u!114 &4719932922219062605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14699,6 +14700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ObstacleMask.m_Bits
       value: 18753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
+        type: 3}
+      propertyPath: ScanFrequencyInSeconds
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
         type: 3}
