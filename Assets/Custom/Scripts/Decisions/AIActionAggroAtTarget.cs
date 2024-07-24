@@ -7,7 +7,7 @@ namespace Custom.Scripts.Decisions
     public class AIActionAggroAtTarget : AIAction
     {
         [SerializeField] private AIDecisionLineOfSightToTarget3DCustom _lineOfSight;
-        [SerializeField] private AggroView _view;
+        [SerializeField] private StateView _view;
         [SerializeField] private float _maxViewDistance = 25f;
         
         private float _amount;
@@ -17,7 +17,7 @@ namespace Custom.Scripts.Decisions
             bool targetVisible = _lineOfSight.LastResult;
             float distanceCorrelation = GetDistanceCorrelation();
             _brain.Detection.UpdateAggro(Time.deltaTime, targetVisible, distanceCorrelation);
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
         }
 
         private float GetDistanceCorrelation()
@@ -34,12 +34,12 @@ namespace Custom.Scripts.Decisions
         public override void OnEnterState()
         {
             _brain.Detection.IfTriggeredReduceToNearTriggered();
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
         }
 
         public override void OnExitState()
         {
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
         }
     }
 }
