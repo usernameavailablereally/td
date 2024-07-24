@@ -15251,7 +15251,7 @@ PrefabInstance:
     - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
         type: 3}
       propertyPath: _linesToCast.Array.data[1].ToOffset.y
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3355055556590161835, guid: 5deeadacb56f74c4ba6a1cb75494ad5e,
         type: 3}
