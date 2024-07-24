@@ -5269,7 +5269,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: cefb2661e65fc8c4c9c9e8319d6e9912, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10279,7 +10278,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: cefb2661e65fc8c4c9c9e8319d6e9912, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10606,7 +10604,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 4
+  WalkSpeed: 5
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -10641,10 +10639,10 @@ MonoBehaviour:
   ForcedCrouch: 0
   InputMode: 1
   CrawlAuthorized: 1
-  CrawlSpeed: 2
+  CrawlSpeed: 3.5
   ResizeColliderWhenCrouched: 1
   TranslateColliderOnCrouch: 0
-  CrouchedColliderHeight: 0.6
+  CrouchedColliderHeight: 1.1
   ObjectsToOffset:
   - {fileID: 1254771915079489432}
   OffsetCrouch: {x: 0, y: -0.8, z: 0.2}
@@ -10673,7 +10671,7 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  RunSpeed: 8
+  RunSpeed: 10
   AutoRun: 0
   AutoRunThreshold: 0.6
 --- !u!114 &114218547530737672
@@ -10954,8 +10952,8 @@ MonoBehaviour:
   RotationSpace: 0
   RotationForward: {x: 0, y: 0, z: 1}
   RotationAxis: {x: 0, y: 1, z: 0}
-  CameraRotationSpeed: 3
-  CameraInterpolationSpeed: 0.2
+  CameraRotationSpeed: 0.5
+  CameraInterpolationSpeed: 1
   InputAuthorized: 1
   AutoSetupInputManager: 1
 --- !u!114 &8821616259050663653
@@ -10973,8 +10971,8 @@ MonoBehaviour:
   Model: {fileID: 0}
   CurrentHealth: 0
   Invulnerable: 0
-  InitialHealth: 150
-  MaximumHealth: 150
+  InitialHealth: 25
+  MaximumHealth: 25
   ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageMMFeedbacks: {fileID: 956573894401959423}
@@ -13355,7 +13353,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 956573894401959423}
         DebugActive: 0
-        FlashColor: {r: 1, g: 0, b: 0, a: 1}
+        FlashColor: {r: 1, g: 0, b: 0, a: 0.6666667}
         FlashDuration: 0.1
         FlashAlpha: 1
         FlashID: 0

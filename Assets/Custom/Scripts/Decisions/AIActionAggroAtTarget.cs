@@ -7,27 +7,39 @@ namespace Custom.Scripts.Decisions
     public class AIActionAggroAtTarget : AIAction
     {
         [SerializeField] private AIDecisionLineOfSightToTarget3DCustom _lineOfSight;
-        [SerializeField] private AggroView _view;
+        [SerializeField] private StateView _view;
+        [SerializeField] private float _maxViewDistance = 25f;
         
         private float _amount;
 
         public override void PerformAction()
         {
             bool targetVisible = _lineOfSight.LastResult;
-            _brain.Detection.UpdateAggro(Time.deltaTime, targetVisible);
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            float distanceCorrelation = GetDistanceCorrelation();
+            _brain.Detection.UpdateAggro(Time.deltaTime, targetVisible, distanceCorrelation);
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
+        }
+
+        private float GetDistanceCorrelation()
+        {
+            if (_brain.Target == null)
+            {
+                return 0;
+            }
+
+            float distanceToTarget = Vector3.Magnitude(_brain.Target.position - transform.position);
+            return Mathf.Clamp01(distanceToTarget / _maxViewDistance);
         }
 
         public override void OnEnterState()
         {
-            _brain.Detection.Reset();
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            _brain.Detection.IfTriggeredReduceToNearTriggered();
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
         }
 
         public override void OnExitState()
         {
-            _brain.Detection.Reset();
-            _view.SetValue(_brain.Detection.AggroAmount01);
+            _view.SetDetectionValue(_brain.Detection.AggroAmount01);
         }
     }
 }

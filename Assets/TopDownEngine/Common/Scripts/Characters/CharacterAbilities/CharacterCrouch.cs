@@ -111,6 +111,11 @@ namespace MoreMountains.TopDownEngine
 			{
 				CheckExitCrouch();
 			}
+
+			if (_movement.CurrentState == CharacterStates.MovementStates.Jumping)
+			{
+				ExitCrouch(false);
+			}
 			
 			OffsetObjects ();
 		}
@@ -320,7 +325,7 @@ namespace MoreMountains.TopDownEngine
 		/// <summary>
 		/// Returns the character to normal stance
 		/// </summary>
-		protected virtual void ExitCrouch()
+		protected virtual void ExitCrouch(bool changeState = true)
 		{
 			_crouching = false;
 	        
@@ -337,8 +342,8 @@ namespace MoreMountains.TopDownEngine
 			PlayAbilityStopFeedbacks();
 
 			// we go back to Idle state and reset our collider's size
-			if ((_movement.CurrentState == CharacterStates.MovementStates.Crawling) ||
-			    (_movement.CurrentState == CharacterStates.MovementStates.Crouching))
+			if (changeState && ((_movement.CurrentState == CharacterStates.MovementStates.Crawling) ||
+			                (_movement.CurrentState == CharacterStates.MovementStates.Crouching)))
 			{
 				_movement.ChangeState(CharacterStates.MovementStates.Idle);    
 			}
