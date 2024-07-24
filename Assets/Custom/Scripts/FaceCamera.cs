@@ -18,7 +18,7 @@ public class FaceCamera : MonoBehaviour
     {
         if (Time.time >= _nextFaceTime)
         {
-            transform.forward = (_cam.transform.position = transform.position).normalized;
+            transform.forward = (_cam.transform.position - transform.position).normalized;
             _nextFaceTime = Time.time + _faceFrequency;
         }
     }
