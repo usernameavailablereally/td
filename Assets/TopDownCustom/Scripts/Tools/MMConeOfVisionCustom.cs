@@ -65,7 +65,8 @@ namespace MoreMountains.Tools
 		public float ScanFrequencyInSeconds = 1f;
 		[MMReadOnly]
 		public List<Transform> VisibleTargets = new List<Transform>();
-        
+		public bool LogRaycastResults = false;
+
 		[Header("Mesh")]
 		public bool ShouldDrawMesh = true;
 		public float MeshDensity = 0.2f;
@@ -140,9 +141,12 @@ namespace MoreMountains.Tools
 				if (IsUnObscured() && !duplicate)
 				{
 					VisibleTargets.Add(_target);
-					Debug.Log($"Visual target found");
+					if (LogRaycastResults)
+					{
+						Debug.Log($"Visual target found");
+					}
 				}
-				else
+				else if(LogRaycastResults)
 				{
 					Ray ray = new Ray(Center, _directionToTarget * _distanceToTarget);
 					Physics.Raycast(ray, out var hit);

@@ -6388,13 +6388,13 @@ MonoBehaviour:
   MeleeDamageAreaMode: 0
   DamageAreaShape: 3
   AreaOffset: {x: 0, y: 0, z: 0}
-  AreaSize: {x: 3, y: 2, z: 3}
+  AreaSize: {x: 4, y: 3, z: 4}
   TriggerFilter: 195
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
   ExistingDamageArea: {fileID: 0}
-  InitialDelay: 1
-  ActiveDuration: 0.5
+  InitialDelay: 0
+  ActiveDuration: 1
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8448

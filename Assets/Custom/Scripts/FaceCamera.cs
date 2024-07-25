@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
+    [SerializeField] private float _faceFrequency = 0.1f;
     private Camera _cam;
+
+    private float _nextFaceTime;
 
     private void Start()
     {
@@ -13,6 +16,10 @@ public class FaceCamera : MonoBehaviour
 
     private void Update()
     {
-        transform.forward = (_cam.transform.position = transform.position).normalized;
+        if (Time.time >= _nextFaceTime)
+        {
+            transform.forward = (_cam.transform.position - transform.position).normalized;
+            _nextFaceTime = Time.time + _faceFrequency;
+        }
     }
 }
