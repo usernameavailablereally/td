@@ -45741,6 +45741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoiseInteractable
       objectReference: {fileID: 0}
+    - target: {fileID: 4833925691709073757, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45794,12 +45799,12 @@ PrefabInstance:
     - target: {fileID: 8826085810561118959, guid: c2e89295e2aa542ccb94e6d1102128de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.3
+      value: 44.68
       objectReference: {fileID: 0}
     - target: {fileID: 8826085810561118959, guid: c2e89295e2aa542ccb94e6d1102128de,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.5
+      value: 27.89
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
