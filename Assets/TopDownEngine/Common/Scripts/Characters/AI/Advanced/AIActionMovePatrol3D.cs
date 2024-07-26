@@ -74,7 +74,7 @@ namespace MoreMountains.TopDownEngine
 			// initialize the start position
 			_startPosition = transform.position;
 			_initialPosition = this.transform.position;
-			_initialDirection = _direction;
+			_initialDirection = this.transform.forward;
 			_initialScale = transform.localScale;
 			CurrentPathIndex = 0;
 			_indexLastFrame = -1;
@@ -110,6 +110,12 @@ namespace MoreMountains.TopDownEngine
 			if ((_character.ConditionState.CurrentState == CharacterStates.CharacterConditions.Dead)
 			    || (_character.ConditionState.CurrentState == CharacterStates.CharacterConditions.Frozen))
 			{
+				return;
+			}
+
+			if (_mmPath.PathElements.Count <=1 )
+			{
+				_controller.CurrentDirection = _initialDirection;
 				return;
 			}
 
