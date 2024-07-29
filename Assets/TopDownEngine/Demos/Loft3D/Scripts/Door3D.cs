@@ -95,7 +95,7 @@ namespace MoreMountains.TopDownEngine
 		/// While we're colliding with something, we store the timestamp for future use
 		/// </summary>
 		/// <param name="collider"></param>
-		protected virtual void OnTriggerStay(Collider collider)
+		protected virtual void OnTriggerEnter(Collider collider)
 		{
 			_lastContactTimestamp = Time.time;
 		}
