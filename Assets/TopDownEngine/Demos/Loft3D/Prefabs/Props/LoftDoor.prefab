@@ -180,7 +180,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 4.69, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.103881, y: 2.345, z: -0.38304806}
+  m_ConnectedAnchor: {x: -0.10389936, y: 2.345, z: -0.3830328}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -298,7 +298,7 @@ MonoBehaviour:
   MaxAngle: 269
   MinAngleLock: 90
   MaxAngleLock: 270
-  SafeLockDuration: 1
+  SafeLockDuration: 5
   Door: {fileID: 54868734095785456}
 --- !u!1 &1759952183632832
 GameObject:
@@ -361,7 +361,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0723e939acc618c4f8d09b28d6185cd5, type: 2}
+  - {fileID: 2100000, guid: 101826bcd8e40364d8c770c9ff787e82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -410,7 +410,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4178892660765664}
@@ -542,5 +542,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 5, z: 0.5}
+  m_Size: {x: 5, y: 5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}

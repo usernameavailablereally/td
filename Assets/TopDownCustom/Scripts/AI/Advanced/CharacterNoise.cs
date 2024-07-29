@@ -55,7 +55,6 @@ namespace MoreMountains.TopDownEngine
 		protected float _lastTargetCheckTimestamp = 0f;
 		private void UpdateNoise()
 		{
-
 			foreach (CharacterHandleWeapon handleWeapon in _handleWeaponList)
 			{
 				if (handleWeapon.CurrentWeapon != null &&
@@ -77,17 +76,20 @@ namespace MoreMountains.TopDownEngine
 			} 
 
 			_lastTargetCheckTimestamp = Time.time;
-
+			
 			NoiseQualifier noiseQualifier = NoisesQualifier.FirstOrDefault(qualifier => qualifier.MovementState == _movement.CurrentState);
 			if (noiseQualifier != null)
 			{
 				SetNoiseLevel(noiseQualifier.NoiseFactor);
 			}
+			else
+			{
+				SetNoiseLevel(0);
+			}
 		}
 
 		private void SetNoiseLevel(float level)
 		{
-			// Debug.Log($"SetNoiseLevel {level}");
 			NoiseCollider.enabled = level > 0;
 			float targetValue = _initialNoiseRadius * _characterMovement.MovementSpeed * level;
 			NoiseCollider.radius = Mathf.Clamp(targetValue, 0, MaxNoise);

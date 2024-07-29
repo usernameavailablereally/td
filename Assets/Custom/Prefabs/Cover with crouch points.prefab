@@ -88,7 +88,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 384072081026828588}
@@ -246,6 +246,7 @@ MonoBehaviour:
   - {fileID: 5293433295652209632}
   - {fileID: 5648227653361688399}
   - {fileID: 1413128652866754334}
+  <IsTaken>k__BackingField: 0
 --- !u!1 &5705005879529041141
 GameObject:
   m_ObjectHideFlags: 0

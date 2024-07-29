@@ -5094,7 +5094,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d4cd643376433c14a89d978020e035ec, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5269,7 +5268,7 @@ MonoBehaviour:
   ProjectilesPerShot: 1
   SpawnTransforms: []
   SpawnTransformsMode: 1
-  Spread: {x: 10, y: 10, z: 10}
+  Spread: {x: 5, y: 5, z: 5}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
   SpawnPosition: {x: 0, y: 0.16, z: 0.57}
@@ -5357,7 +5356,7 @@ MonoBehaviour:
   LaserMaxDistance: 50
   LaserCollisionMask:
     serializedVersion: 2
-    m_Bits: 1057536
+    m_Bits: 1059584
   LaserWidth: {x: 0.01, y: 0.01}
   LaserMaterial: {fileID: 2100000, guid: 1cb8e0111ef48445fac52378d3c4d76d, type: 2}
 --- !u!114 &114539619473186470
@@ -15579,7 +15578,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d4cd643376433c14a89d978020e035ec, type: 2}
-  - {fileID: 2100000, guid: d4cd643376433c14a89d978020e035ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20494,7 +20492,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -25604,7 +25601,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 32aa65b46c56ea149951a49cec5a1ee4, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32160,7 +32156,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d4cd643376433c14a89d978020e035ec, type: 2}
   - {fileID: 2100000, guid: d4cd643376433c14a89d978020e035ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

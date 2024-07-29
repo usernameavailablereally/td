@@ -10,36 +10,20 @@ public class ObjectNoise : MonoBehaviour
     [Tooltip("the noise sound")]
     public AudioSource NoiseAudioSource; 
     [Tooltip("Target Noise level when activated")]
-    public float TargetNoiseLevel; 
-    private bool _readyToMakeNoise;
+    public float TargetNoiseLevel;
 
-    private void OnTriggerEnter(Collider other)
+    public NoiseTriggerZone NoiseTriggerZone;
+
+    private static bool isPlaying;
+
+    void Awake()
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log($"Object Noise Player enter detected");
-            _readyToMakeNoise = true;
-        }
+        NoiseTriggerZone.IsTriggered += IsZoneTriggered;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void IsZoneTriggered()
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log($"Object Noise Player exit detected");
-            _readyToMakeNoise = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (_readyToMakeNoise)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                SetNoiseLevel(TargetNoiseLevel);
-            }
-        }
+        SetNoiseLevel(TargetNoiseLevel);
     }
 
     private void SetNoiseLevel(float level)
@@ -47,13 +31,15 @@ public class ObjectNoise : MonoBehaviour
         Debug.Log($"Object Noise SetNoiseLevel {level}");
         NoiseCollider.enabled = level > 0;
         NoiseCollider.radius = level;
-        if (level > 0)
+        if (level > 0 && !isPlaying)
         {
             NoiseAudioSource.Play();
+            isPlaying = true;
         }
         else
         {
             NoiseAudioSource.Stop();
+            isPlaying = false;
         }
     }
 }
