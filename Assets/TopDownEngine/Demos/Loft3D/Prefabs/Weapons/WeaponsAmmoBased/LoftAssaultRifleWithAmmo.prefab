@@ -5356,7 +5356,7 @@ MonoBehaviour:
   LaserMaxDistance: 50
   LaserCollisionMask:
     serializedVersion: 2
-    m_Bits: 1057536
+    m_Bits: 1059584
   LaserWidth: {x: 0.01, y: 0.01}
   LaserMaterial: {fileID: 2100000, guid: 1cb8e0111ef48445fac52378d3c4d76d, type: 2}
 --- !u!114 &114539619473186470

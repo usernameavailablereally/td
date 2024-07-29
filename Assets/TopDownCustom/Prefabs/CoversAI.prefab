@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: 
-  Radius: 3
+  Radius: 0.1
   DetectionOriginOffset: {x: 0, y: 0, z: 0}
   TargetLayerMask:
     serializedVersion: 2
@@ -14050,8 +14050,6 @@ MonoBehaviour:
   LoopInitialMovementDirection: 0
   PathElements:
   - PathElementPosition: {x: 0.36437154, y: 0, z: 0.39138412}
-    Delay: 3
-  - PathElementPosition: {x: 0.37701058, y: 0, z: 10.924843}
     Delay: 3
   ReferenceMMPath: {fileID: 0}
   AbsoluteReferencePath: 0

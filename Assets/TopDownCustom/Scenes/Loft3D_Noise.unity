@@ -14634,6 +14634,7 @@ MonoBehaviour:
   NoiseCollider: {fileID: 1075594272}
   NoiseAudioSource: {fileID: 1410543234}
   TargetNoiseLevel: 50
+  NoiseTriggerZone: {fileID: 0}
 --- !u!82 &1410543234
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20066,6 +20067,7 @@ Transform:
   - {fileID: 15828296}
   - {fileID: 1074152503}
   - {fileID: 503114476}
+  - {fileID: 2021995059}
   - {fileID: 1127364626}
   - {fileID: 1817471472}
   - {fileID: 1459955336}
@@ -20350,6 +20352,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4406246628302934, guid: 9c562e0ce3f8ecf479a9806c693361d9,
     type: 3}
   m_PrefabInstance: {fileID: 554979243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2021995058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1963177588}
+    m_Modifications:
+    - target: {fileID: 4092262403314284648, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092262403314284648, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833925691709073757, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_Name
+      value: NoiseInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.651
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826085810561118959, guid: c2e89295e2aa542ccb94e6d1102128de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c2e89295e2aa542ccb94e6d1102128de, type: 3}
+--- !u!4 &2021995059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7026543233476110815, guid: c2e89295e2aa542ccb94e6d1102128de,
+    type: 3}
+  m_PrefabInstance: {fileID: 2021995058}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2033056130 stripped
 Transform:
