@@ -10819,7 +10819,7 @@ MonoBehaviour:
   AutoPickItems: []
   AutoPickOnlyIfMainInventoryIsEmpty: 0
   AutoEquipWeaponOnStart: {fileID: 0}
-  AutoEquipOnlyIfMainInventoryIsEmpty: 0
+  AutoEquipOnlyIfMainInventoryIsEmpty: 1
   AutoEquipOnlyIfEquipmentInventoryIsEmpty: 0
   AutoEquipOnRespawn: 1
   CharacterHandleWeapon: {fileID: 0}
@@ -11055,6 +11055,8 @@ MonoBehaviour:
     NoiseFactor: 0
   - MovementState: 5
     NoiseFactor: 0
+  - MovementState: 6
+    NoiseFactor: 1
   - MovementState: 3
     NoiseFactor: 3
   - MovementState: 4
