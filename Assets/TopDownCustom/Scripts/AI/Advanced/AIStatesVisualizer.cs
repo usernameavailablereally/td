@@ -6,22 +6,22 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
+[RequireComponent(typeof(MMF_Player))]
 public class AIStatesVisualizer : MonoBehaviour
 {
-    /// the feedback to play when getting damage
-    [Tooltip("the feedback to play when getting damage")]
-    public MMFeedbacks StatusFeedback;
     public AIBrain AIBrain;
     public float DelayBeetweenStates;
     private readonly Queue<string> _statusesPool = new Queue<string>();
     private float _timeSinceLastStateShow;
+    private MMF_Player _statusFeedback;
     
 
     private string _storedState = string.Empty;
 
     private void Awake()
     {
-        StatusFeedback?.Initialization(this.gameObject);
+        _statusFeedback = GetComponent<MMF_Player>();
+        _statusFeedback?.Initialization(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -42,17 +42,13 @@ public class AIStatesVisualizer : MonoBehaviour
 
     public void TriggerStateChange()
     {
-       // FeedbackText = StatusFeedback.Feedbacks[0].;
-        //FeedbackText.TargetText = newState;
-        //FeedbackText.Play();
-        StatusFeedback?.PlayFeedbacks(this.transform.position, 1);    
+        _statusFeedback?.PlayFeedbacks(this.transform.position, 1);    
     }
 
     public string DequeueNextStatus()
     {
         if (_statusesPool.Count == 0)
         {
-         //   return AIBrain.CurrentState.StateName;
          return null;
         }
         

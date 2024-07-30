@@ -2899,6 +2899,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec4006999a806c4291e661db75cac17, type: 3}
+--- !u!114 &134537360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3938830047482702047, guid: 6a87b1921aa9c40a788672f6719aafa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1017635651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0baa9c85f6604bb3a3e320757fd8073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &135063922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25929,6 +25941,11 @@ PrefabInstance:
       propertyPath: PathElements.Array.data[16].PathElementPosition.z
       value: -20.765526
       objectReference: {fileID: 0}
+    - target: {fileID: 2782014944894802919, guid: 6a87b1921aa9c40a788672f6719aafa3,
+        type: 3}
+      propertyPath: managedReferences[3485323590168477698].AIStatesVisualizer
+      value: 
+      objectReference: {fileID: 134537360}
     - target: {fileID: 4951168892390059897, guid: 6a87b1921aa9c40a788672f6719aafa3,
         type: 3}
       propertyPath: m_Name
@@ -27334,10 +27351,25 @@ PrefabInstance:
       propertyPath: PathElements.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2782014944894802919, guid: 6a87b1921aa9c40a788672f6719aafa3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938830047482702047, guid: 6a87b1921aa9c40a788672f6719aafa3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4951168892390059897, guid: 6a87b1921aa9c40a788672f6719aafa3,
         type: 3}
       propertyPath: m_Name
       value: CoversAI (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769947465504437375, guid: 6a87b1921aa9c40a788672f6719aafa3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45046,6 +45078,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2782014944894802919, guid: 6a87b1921aa9c40a788672f6719aafa3,
+        type: 3}
+      propertyPath: managedReferences[3485323590168477698].AIStatesVisualizer
+      value: 
+      objectReference: {fileID: 2105143930}
     - target: {fileID: 4951168892390059897, guid: 6a87b1921aa9c40a788672f6719aafa3,
         type: 3}
       propertyPath: m_Name
@@ -48608,6 +48645,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad36c3d044d312e44a986a07f2c7f0b2, type: 3}
+--- !u!114 &2105143930 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3938830047482702047, guid: 6a87b1921aa9c40a788672f6719aafa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1925731363}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0baa9c85f6604bb3a3e320757fd8073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2106788195
 PrefabInstance:
   m_ObjectHideFlags: 0
