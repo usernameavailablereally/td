@@ -14879,6 +14879,7 @@ MonoBehaviour:
   NoiseCollider: {fileID: 1075594272}
   NoiseAudioSource: {fileID: 1410543234}
   TargetNoiseLevel: 50
+  NoiseTriggerZone: {fileID: 0}
 --- !u!82 &1410543234
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15857,6 +15858,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2091169613}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1518754590
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012112915108162408, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951168892390059897, guid: 0bfc4668736f040338dfa3f96e6c7bf0,
+        type: 3}
+      propertyPath: m_Name
+      value: CoversAIFocusNoise
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1962036589449966370, guid: 0bfc4668736f040338dfa3f96e6c7bf0, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0bfc4668736f040338dfa3f96e6c7bf0, type: 3}
 --- !u!1 &1543243260
 GameObject:
   m_ObjectHideFlags: 0
@@ -22177,3 +22247,4 @@ SceneRoots:
   - {fileID: 627456237}
   - {fileID: 1951842937}
   - {fileID: 8212882379161074438}
+  - {fileID: 1518754590}

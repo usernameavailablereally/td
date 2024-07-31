@@ -60,42 +60,13 @@ namespace MoreMountains.TopDownEngine
 		protected float _lastTargetCheckTimestamp = 0f;
 		private void UpdateNoise()
 		{
-			foreach (CharacterHandleWeapon handleWeapon in _handleWeaponList)
-			{
-				if (handleWeapon.CurrentWeapon != null &&
-				    handleWeapon.CurrentWeapon.IsSilent == false)
-				{
-					if (handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponStart ||
-					    handleWeapon.CurrentWeapon.WeaponState.CurrentState == Weapon.WeaponStates.WeaponUse)
-					{
-						//SetNoiseLevel(NoisesQualifier.First(qualifier => qualifier.MovementState == CharacterStates.MovementStates.Attacking).NoiseFactor);
-						return;
-					}
-				}
-			}
-			
-			// we check if there's a need to detect a new target
-			if (Time.time - _lastTargetCheckTimestamp < TargetCheckFrequency)
-			{
-				return;
-			} 
-
-			_lastTargetCheckTimestamp = Time.time;
-			
-			NoiseQualifier noiseQualifier = NoisesQualifier.FirstOrDefault(qualifier => qualifier.MovementState == _movement.CurrentState);
-			if (noiseQualifier != null)
-			{
-			//	SetNoiseLevel(noiseQualifier.NoiseFactor);
-			}
-			else
-			{
-			//	SetNoiseLevel(0);
-			}
 		}
 
 		private void UpdateFocusZone()
 		{
-			if (_character.CharacterBrain.CurrentState.StateName == "")
+			if (_character.CharacterBrain.CurrentState.StateName == "Destroying")
+{	}
+
 		}
 
 		/*private void SetNoiseLevel(float level)
@@ -109,9 +80,9 @@ namespace MoreMountains.TopDownEngine
 			GUIManager.Instance.UpdateNoiseBar(NoiseCollider.radius, 0f, MaxNoise, _character.PlayerID);
 		}*/
 
-		public void SetAbilityState(bool isActive)
+		/*public void SetAbilityState(bool isActive)
 		{
 			_isActive = isActive;
-		}
+		}*/
 	}
 }
