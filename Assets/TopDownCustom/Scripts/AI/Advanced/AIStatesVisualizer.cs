@@ -25,7 +25,12 @@ public class AIStatesVisualizer : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
+        if (AIBrain == null || AIBrain.CurrentState == null)
+        {
+            return;
+        }
+
         string currentStateName = AIBrain.CurrentState.StateName;
         if (!_storedState.Equals(currentStateName))
         {
