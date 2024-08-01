@@ -2334,11 +2334,9 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  FocusNoiseArea: {fileID: 0}
-  NoiseVisialization: {fileID: 0}
+  FocusNoiseArea: {fileID: 8152277289634721831}
   TargetCheckFrequency: 1
-  NoisesQualifier: []
-  MaxNoise: 0
+  AINoiseAreaFactor: 6
 --- !u!1 &1633405619155895983
 GameObject:
   m_ObjectHideFlags: 0
@@ -15870,7 +15868,7 @@ PrefabInstance:
     - target: {fileID: 7149896448582667127, guid: 0f7ee10d2fbad4d4fb6cc1df681b1765,
         type: 3}
       propertyPath: m_Radius
-      value: 5.93
+      value: 0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 9159735605865145291, guid: 0f7ee10d2fbad4d4fb6cc1df681b1765,
         type: 3}
@@ -15933,3 +15931,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8067890741494908159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8152277289634721831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2221491650346022104, guid: 0f7ee10d2fbad4d4fb6cc1df681b1765,
+    type: 3}
+  m_PrefabInstance: {fileID: 8067890741494908159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476657fc93dd74ce78ed35192810ce4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

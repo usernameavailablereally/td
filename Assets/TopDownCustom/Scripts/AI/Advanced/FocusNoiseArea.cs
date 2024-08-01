@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using UnityEngine;
 
 public class FocusNoiseArea : MonoBehaviour
 {
     public SphereCollider FocusZoneCollider;
-    
-    /*protected virtual void OnTriggerEnter(Collider collider)
+    public AIBrain Brain;
+
+    public Transform GetTarget()
     {
-        _characterCrouch = collider.gameObject.MMGetComponentNoAlloc<Character>()?.FindAbility<CharacterCrouch>();
-        if (_characterCrouch != null)
-        {
-            _characterCrouch.StartForcedCrouch();
-        }
-    }*/
+        return Brain.Target;
+    }
 }

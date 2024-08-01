@@ -127,7 +127,15 @@ namespace MoreMountains.TopDownEngine
 				RaycastHit hit = MMDebug.Raycast3D(_raycastOrigin, _raycastDirection, _raycastDirection.magnitude, ObstacleMask.value, Color.yellow, true, QueryTriggerInteraction.Collide);
 				if (hit.collider == null)
 				{
-					_brain.Target = t;
+					if (t.gameObject.layer == LayerMask.NameToLayer("AIAlertNoise"))
+					{
+						var othersTarget = t.GetComponent<FocusNoiseArea>().GetTarget();
+						_brain.Target = othersTarget;
+					}
+					else
+					{
+						_brain.Target = t;
+					}
 					_lastReturnValue = true;
 					ProcessFoundTransform(t);
 					return true;

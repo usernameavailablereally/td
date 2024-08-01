@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9159735605865145291}
   - component: {fileID: 2221491650346022104}
   - component: {fileID: 7149896448582667127}
-  m_Layer: 13
+  m_Layer: 26
   m_Name: FocusNoiseArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

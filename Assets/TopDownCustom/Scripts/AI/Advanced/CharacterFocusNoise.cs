@@ -20,12 +20,12 @@ namespace MoreMountains.TopDownEngine
 		public Transform NoiseVisialization; */
 		[Tooltip("the frequency (in seconds) at which to check for obstacles")]
 		public float TargetCheckFrequency = 1f;
+		 
+		 [Tooltip("Maximum noise value")]
+		public float AINoiseAreaFactor;
 		/*public NoiseQualifier[] NoisesQualifier;*/
 		
-		/*[Tooltip("Maximum noise value")]
-		public float MaxNoise;
-
-		private bool _isActive;*/
+ 
 		
 		/*[System.Serializable]
 		public class NoiseQualifier
@@ -64,9 +64,21 @@ namespace MoreMountains.TopDownEngine
 
 		private void UpdateFocusZone()
 		{
-			if (_character.CharacterBrain.CurrentState.StateName == "Destroying")
-{	}
+			if (Time.time - _lastTargetCheckTimestamp < TargetCheckFrequency)
+			{
+				return;
+			} 
 
+			_lastTargetCheckTimestamp = Time.time;
+			
+			if (_character.CharacterBrain.CurrentState.StateName == "Destroying")
+			{
+				FocusNoiseArea.FocusZoneCollider.radius = AINoiseAreaFactor;
+			}
+			else
+			{
+				FocusNoiseArea.FocusZoneCollider.radius = 0;
+			}
 		}
 
 		/*private void SetNoiseLevel(float level)
