@@ -107,6 +107,13 @@ namespace MoreMountains.TopDownEngine
 		/// a delegate you can hook to, to be notified of weapon changes
 		public OnWeaponChangeDelegate OnWeaponChange;
 
+		public delegate void OnShootStartDelegate();
+		public OnShootStartDelegate OnShootStart;
+		public delegate void OnShootStopDelegate();
+		public OnShootStartDelegate OnShootStop;
+		public delegate void OnReloadDelegate();
+		public OnShootStartDelegate OnReload;
+
 		protected float _fireTimer = 0f;
 		protected float _secondaryHorizontalMovement;
 		protected float _secondaryVerticalMovement;
@@ -340,6 +347,7 @@ namespace MoreMountains.TopDownEngine
 			}
 			PlayAbilityStartFeedbacks();
 			CurrentWeapon.WeaponInputStart();
+			OnShootStart?.Invoke();
 		}
 
 		/// <summary>
@@ -394,6 +402,7 @@ namespace MoreMountains.TopDownEngine
 			}
 
 			ForceStop();
+			OnShootStop?.Invoke();
 		}
 
 		/// <summary>
@@ -417,6 +426,7 @@ namespace MoreMountains.TopDownEngine
 			if (CurrentWeapon != null)
 			{
 				CurrentWeapon.InitiateReloadWeapon();
+				OnReload?.Invoke();
 			}
 		}
 
