@@ -36,7 +36,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[0].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
@@ -68,15 +68,9 @@ public class PlayerNetworkController : NetworkBehaviour
                 ChangeWeaponRpc(weaponID);
             };
 
-            _health.OnHit += () =>
-            {
-                health.Value = _health.CurrentHealth;
-            };
             _characterHandleWeapon.OnShootStart += () => TriggerShootStartRpc();
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
-
-            _health.OnDeath += () => TriggerDeathRpc();
         }
         else
         {
@@ -102,6 +96,17 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
         }
+
+        //if (!ServerIsHost) { _health.Invulnerable = true; }
+
+        //_health.OnHit += () =>
+        //{
+        //    health.Value = _health.CurrentHealth;
+        //    Debug.Log(PlayerID + " Hit. Health: " + health.Value);
+        //};
+        //_health.OnDeath += () => { Debug.Log(PlayerID + " DEAD"); TriggerDeathRpc(); };
+
+
         _character.PlayerID = PlayerID;
         _character.name = PlayerID;
 
@@ -118,6 +123,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private void UpdateOwner()
     {
+        health.Value = _health.CurrentHealth;
         horizontalMovement.Value = _inputManager.PrimaryMovement.x;
         verticalMovement.Value = _inputManager.PrimaryMovement.y;
         position.Value = gameObject.transform.position;
