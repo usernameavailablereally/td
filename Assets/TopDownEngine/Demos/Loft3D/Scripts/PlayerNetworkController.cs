@@ -51,6 +51,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
         _characterMovement = GetComponent<CharacterMovement>();
 
+
         string PlayerID = "Player1";
         if (IsOwner)
         {
@@ -95,6 +96,15 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.Content = new InventoryItem[1];
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
+        }
+
+        if (IsServer)
+        {
+            _health.OnDeath += () => TriggerDeathRpc();
+
+        } else
+        {
+            _health.DamageDisabled();
         }
 
         _character.PlayerID = PlayerID;
@@ -189,14 +199,12 @@ public class PlayerNetworkController : NetworkBehaviour
     [Rpc(SendTo.NotOwner)]
     void ReloadRpc() => _characterHandleWeapon.Reload();
 
-    [Rpc(SendTo.NotOwner)]
+    [Rpc(SendTo.NotServer)]
     void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
     void UpdatePlayerWeaponRpc(string weaponID, RpcParams rpcParams = default)
     {
-        Debug.Log(_character.PlayerID + " changed weapon to " + weaponID);
-
         if (weaponID == "")
         {
             if (_characterHandleWeapon.CurrentWeapon)
@@ -212,12 +220,9 @@ public class PlayerNetworkController : NetworkBehaviour
                     index++;
                 }
             }
-
-            Debug.Log(_character.PlayerID + " hidded weapon");
         }
         else
         {
-            Debug.Log(_character.PlayerID + "changed weapon to " + weaponID);
             if (!_characterHandleWeapon.CurrentWeapon || weaponID != _characterHandleWeapon.CurrentWeapon.WeaponID)
             {
                 var index = 0;
