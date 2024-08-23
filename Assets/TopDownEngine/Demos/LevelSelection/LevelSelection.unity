@@ -7928,7 +7928,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 5
+  m_Text: Level 5 PVP
 --- !u!222 &573015876
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10757,7 +10757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316ab92be1a09414daadf97f5d5d2a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Level 5
+  LevelName: Level 5 PVP
   DoNotUseLevelManager: 1
   DestroyPersistentCharacter: 0
 --- !u!114 &986589114

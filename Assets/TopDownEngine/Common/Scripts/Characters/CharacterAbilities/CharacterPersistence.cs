@@ -67,7 +67,7 @@ namespace MoreMountains.TopDownEngine
 					this.gameObject.SetActive(false);
 					break;
 				case TopDownEngineEventTypes.SpawnCharacterStarts:
-					this.transform.position = LevelManager.Instance.InitialSpawnPoint.transform.position;
+					this.transform.position = LevelManager.Instance.InitialSpawnPoints[0].transform.position;
 					this.gameObject.SetActive(true);
 					Character character = this.gameObject.GetComponentInParent<Character>(); 
 					character.enabled = true;

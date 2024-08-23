@@ -32,7 +32,8 @@ public class PlayerNetworkController : NetworkBehaviour
     
     public override void OnNetworkSpawn()
     {
-        this.transform.position = LevelManager.Instance.InitialSpawnPoint.transform.position;
+        var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();

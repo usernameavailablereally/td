@@ -35,7 +35,7 @@ namespace MoreMountains.TopDownEngine
 		[Header("Checkpoints")]
 		/// the checkpoint to use as initial spawn point if no point of entry is specified
 		[Tooltip("the checkpoint to use as initial spawn point if no point of entry is specified")]
-		public CheckPoint InitialSpawnPoint;
+		public List<CheckPoint> InitialSpawnPoints;
 		/// the currently active checkpoint (the last checkpoint passed by the player)
 		[Tooltip("the currently active checkpoint (the last checkpoint passed by the player)")]
 		public CheckPoint CurrentCheckpoint;
@@ -199,7 +199,7 @@ namespace MoreMountains.TopDownEngine
 		/// </summary>
 		protected virtual void InstantiatePlayableCharacters()
 		{
-			_initialSpawnPointPosition = (InitialSpawnPoint == null) ? Vector3.zero : InitialSpawnPoint.transform.position;
+			_initialSpawnPointPosition = (InitialSpawnPoints.Count == 0) ? Vector3.zero : InitialSpawnPoints[0].transform.position;
 			
 			Players = new List<Character> ();
 
@@ -309,9 +309,9 @@ namespace MoreMountains.TopDownEngine
 				return;
 			}
 
-			if (InitialSpawnPoint != null)
+			if (InitialSpawnPoints.Count > 0)
 			{
-				InitialSpawnPoint.SpawnPlayer(Players[0]);
+				InitialSpawnPoints[0].SpawnPlayer(Players[0]);
 				TopDownEngineEvent.Trigger(TopDownEngineEventTypes.SpawnComplete, Players[0]);
 				return;
 			}
@@ -450,7 +450,7 @@ namespace MoreMountains.TopDownEngine
 
 			if (CurrentCheckpoint == null)
 			{
-				CurrentCheckpoint = InitialSpawnPoint;
+				CurrentCheckpoint = InitialSpawnPoints[0];
 			}
 
 			if (Players[0] == null)
