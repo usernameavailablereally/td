@@ -36,7 +36,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-        this.transform.position = LevelManager.Instance.InitialSpawnPoints[0].transform.position;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
@@ -96,16 +96,6 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
         }
-
-        //if (!ServerIsHost) { _health.Invulnerable = true; }
-
-        //_health.OnHit += () =>
-        //{
-        //    health.Value = _health.CurrentHealth;
-        //    Debug.Log(PlayerID + " Hit. Health: " + health.Value);
-        //};
-        //_health.OnDeath += () => { Debug.Log(PlayerID + " DEAD"); TriggerDeathRpc(); };
-
 
         _character.PlayerID = PlayerID;
         _character.name = PlayerID;
