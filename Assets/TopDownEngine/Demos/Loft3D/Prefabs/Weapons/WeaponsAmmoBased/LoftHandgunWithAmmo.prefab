@@ -5299,10 +5299,10 @@ MonoBehaviour:
   WeaponName: 
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
-  TriggerMode: 1
+  TriggerMode: 0
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 1
-  TimeBetweenUses: 0.3
+  TimeBetweenUses: 0.4
   TimeBetweenUsesReleaseInterruption: 1
   IsSilent: 1
   UseBurstMode: 0
