@@ -13,7 +13,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public NetworkVariable<Vector3> position = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> rotation = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> weaponAim = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public float maxPositionDeviation = 0.3f;
     
@@ -100,10 +100,10 @@ public class PlayerNetworkController : NetworkBehaviour
 
         if (IsServer)
         {
+            health.Value = _health.CurrentHealth;
+            _health.OnHit += () => health.Value = _health.CurrentHealth;
             _health.OnDeath += () => TriggerDeathRpc();
-
-        } else
-        {
+        } else {
             _health.DamageDisabled();
         }
 
@@ -123,15 +123,15 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private void UpdateOwner()
     {
-        health.Value = _health.CurrentHealth;
         horizontalMovement.Value = _inputManager.PrimaryMovement.x;
         verticalMovement.Value = _inputManager.PrimaryMovement.y;
         position.Value = gameObject.transform.position;
 
         _characterMovement.SetMovement(new Vector2(horizontalMovement.Value, verticalMovement.Value));
         weaponAim.Value = _characterHandleWeapon.WeaponAimComponent ? _characterHandleWeapon.WeaponAimComponent.CurrentAim : Vector3.zero;
+        _health.SetHealth(health.Value);
     }
-    
+
     private void OnMovementStateChange()
     {
         characterMovementState.Value = _character.MovementState.CurrentState;
@@ -160,9 +160,6 @@ public class PlayerNetworkController : NetworkBehaviour
         else if (characterMovementState.Value != CharacterStates.MovementStates.Jumping)
             _characterRun.RunStop();
 
-
-        _health.SetHealth(health.Value);
-           
         if (weaponAim.Value != Vector3.zero)
         {
             _characterHandleWeapon.WeaponAimComponent.enabled = false;
