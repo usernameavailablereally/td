@@ -5206,7 +5206,7 @@ MonoBehaviour:
   TriggerMode: 0
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 1
-  TimeBetweenUses: 0.1
+  TimeBetweenUses: 0.4
   TimeBetweenUsesReleaseInterruption: 1
   IsSilent: 0
   UseBurstMode: 1

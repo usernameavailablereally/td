@@ -6329,7 +6329,7 @@ MonoBehaviour:
   TriggerMode: 0
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 0
-  TimeBetweenUses: 0
+  TimeBetweenUses: 0.35
   TimeBetweenUsesReleaseInterruption: 0
   IsSilent: 1
   UseBurstMode: 0
