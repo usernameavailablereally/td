@@ -5203,13 +5203,13 @@ MonoBehaviour:
   WeaponName: 
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
-  TriggerMode: 1
+  TriggerMode: 0
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 1
   TimeBetweenUses: 0.1
   TimeBetweenUsesReleaseInterruption: 1
   IsSilent: 0
-  UseBurstMode: 0
+  UseBurstMode: 1
   BurstLength: 3
   BurstTimeBetweenShots: 0.1
   MagazineBased: 0
