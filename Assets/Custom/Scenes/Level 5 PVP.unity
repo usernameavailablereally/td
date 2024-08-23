@@ -11370,7 +11370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232055767}
   m_Layer: 0
-  m_Name: Old Level
+  m_Name: OldLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29163,7 +29163,7 @@ GameObject:
   - component: {fileID: 585420075}
   - component: {fileID: 585420074}
   m_Layer: 0
-  m_Name: Map Ref
+  m_Name: MapRef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33987,7 +33987,7 @@ PrefabInstance:
     - target: {fileID: 224674173061577030, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27.999512
+      value: -27.999496
       objectReference: {fileID: 0}
     - target: {fileID: 224681683108154520, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
@@ -34107,7 +34107,7 @@ PrefabInstance:
     - target: {fileID: 224885324633156202, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224885324633156202, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
@@ -34122,7 +34122,12 @@ PrefabInstance:
     - target: {fileID: 224885324633156202, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -93.76752
+      objectReference: {fileID: 0}
+    - target: {fileID: 224885324633156202, guid: d4529f47989526241929319abfdfc29d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0021362305
       objectReference: {fileID: 0}
     - target: {fileID: 224925011677747906, guid: d4529f47989526241929319abfdfc29d,
         type: 3}
@@ -37750,7 +37755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 737862200}
   m_Layer: 0
-  m_Name: Walls and Doors
+  m_Name: WallsAndDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57600,7 +57605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129876026}
   m_Layer: 0
-  m_Name: Lights New
+  m_Name: LightsNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72239,7 +72244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417010882}
   m_Layer: 0
-  m_Name: Level Zones Adjustments
+  m_Name: LevelZonesAdjustments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
