@@ -76,6 +76,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
 
+            _health.OnDeath += () => TriggerDeathRpc();
         }
         else
         {
@@ -178,6 +179,9 @@ public class PlayerNetworkController : NetworkBehaviour
     public void TriggerReloadRpc() => ReloadRpc();
 
     [Rpc(SendTo.Server)]
+    public void TriggerDeathRpc() => DieRpc();
+
+    [Rpc(SendTo.Server)]
     public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID, rpcParams);
 
     [Rpc(SendTo.NotOwner)]
@@ -188,6 +192,9 @@ public class PlayerNetworkController : NetworkBehaviour
 
     [Rpc(SendTo.NotOwner)]
     void ReloadRpc() => _characterHandleWeapon.Reload();
+
+    [Rpc(SendTo.NotOwner)]
+    void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
     void UpdatePlayerWeaponRpc(string weaponID, RpcParams rpcParams = default)
