@@ -13,6 +13,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public NetworkVariable<Vector3> position = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> rotation = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> weaponAim = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public float maxPositionDeviation = 0.3f;
     
@@ -20,6 +21,8 @@ public class PlayerNetworkController : NetworkBehaviour
     private TopDownController3D _controller;
     private CharacterMovement _characterMovement;
     private CharacterJump3D _characterJump;
+    private CharacterDash3D _characterDash;
+    private Health _health;
     private CharacterCrouch _characterCrouch;
     private CharacterRun _characterRun;
     private CharacterHandleWeapon _characterHandleWeapon;
@@ -32,14 +35,18 @@ public class PlayerNetworkController : NetworkBehaviour
     
     public override void OnNetworkSpawn()
     {
-        this.transform.position = LevelManager.Instance.InitialSpawnPoint.transform.position;
+        var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
+        _characterDash = GetComponent<CharacterDash3D>();
         _characterCrouch = GetComponent<CharacterCrouch>();
         _characterRun = GetComponent<CharacterRun>();
         _characterHandleWeapon = GetComponent<CharacterHandleWeapon>();
         _characterInventory = GetComponent<CharacterInventory>();
+        _health = GetComponent<Health>();
+
         InventoryCharacterIdentifier _characterInventoryIndetifier = GetComponent<InventoryCharacterIdentifier>();
 
         _characterMovement = GetComponent<CharacterMovement>();
@@ -61,6 +68,10 @@ public class PlayerNetworkController : NetworkBehaviour
                 ChangeWeaponRpc(weaponID);
             };
 
+            _health.OnHit += () =>
+            {
+                health.Value = _health.CurrentHealth;
+            };
             _characterHandleWeapon.OnShootStart += () => TriggerShootStartRpc();
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
@@ -142,6 +153,9 @@ public class PlayerNetworkController : NetworkBehaviour
         else if (characterMovementState.Value != CharacterStates.MovementStates.Jumping)
             _characterRun.RunStop();
 
+
+        _health.SetHealth(health.Value);
+           
         if (weaponAim.Value != Vector3.zero)
         {
             _characterHandleWeapon.WeaponAimComponent.enabled = false;
