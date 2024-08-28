@@ -8,7 +8,6 @@ public class SlowMo : MonoBehaviour
 {
     [SerializeField] private SlowMoConfig _config;
     [SerializeField] private KeyCode _triggerCode = KeyCode.N;
-    [SerializeField] private KeyCode _stopTriggerCode = KeyCode.M;
     [SerializeField] private BackgroundMusic _bgMusic;
     [SerializeField] private MMProgressBar _ui;
 
@@ -30,11 +29,13 @@ public class SlowMo : MonoBehaviour
     {
         bool canStart = _slowMoAmount > _config.MinAmountToStart;
         bool canContinue = _slowMoAmount > 0;
-        if (Input.GetKey(_triggerCode) && canStart)
+        bool toggleOn = Input.GetKeyDown(_triggerCode);
+        
+        if (toggleOn && !_isInSlowMo && canStart)
         {
             StartSlowMo();
         }
-        else if (Input.GetKey(_stopTriggerCode) || !canContinue)
+        else if (toggleOn && _isInSlowMo || !canContinue)
         {
             StopSlowMo();
         }
