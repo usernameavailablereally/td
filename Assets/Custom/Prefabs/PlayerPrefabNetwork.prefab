@@ -11117,6 +11117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4340ada9f91e942cfa5b7f3bad008a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customTextFeedbackVisualizer: {fileID: 9021838684447625276}
   horizontalMovement:
     m_InternalValue: 0
   verticalMovement:
@@ -12291,6 +12292,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4176516101655970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &362318524975695068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2283129389850959426}
+  - component: {fileID: 9021838684447625276}
+  m_Layer: 10
+  m_Name: CustomFloatingFeedbackTextVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2283129389850959426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362318524975695068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 487596343018530383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9021838684447625276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362318524975695068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561d58a2c041480190c090bc998fbcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageMMFeedbacks: {fileID: 956573894401959423}
 --- !u!1 &1254771915079489432
 GameObject:
   m_ObjectHideFlags: 0
@@ -13128,7 +13174,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -0.16899967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2283129389850959426}
   m_Father: {fileID: 4975361585091030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &956573894401959423
@@ -13226,13 +13273,13 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 1871970848641384448
   - rid: 0
   - rid: 1
   - rid: 2
   - rid: 3
   - rid: 4
   - rid: 5
+  - rid: 1871970889823682561
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -13802,13 +13849,13 @@ MonoBehaviour:
         MaterialIndexes: 
         UseMaterialPropertyBlocks: 0
         SpriteRendererTextureProperty: _MainTex
-    - rid: 1871970848641384448
-      type: {class: MMF_TopDownEngineFloatingText, ns: MoreMountains.TopDownEngine,
-        asm: MoreMountains.TopDownEngine}
+    - rid: 1871970889823682561
+      type: {class: MMF_TopDownEngineFloatingCustomText, ns: MoreMountains.TopDownEngine,
+        asm: TopDownCustom}
       data:
         Active: 1
-        UniqueID: 517909702
-        Label: TopDown Engine Floating Text
+        UniqueID: -1832507732
+        Label: TopDown Engine Floating Custom Text
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -13911,7 +13958,7 @@ MonoBehaviour:
         PositionMode: 1
         TargetTransform: {fileID: 0}
         Direction: {x: 0, y: 0, z: 0}
-        TargetHealth: {fileID: 8821616259050663653}
+        CustomTextFeedbackVisualizer: {fileID: 9021838684447625276}
         Formatting: 
         DamageDirectionImpactsTextDirection: 1
         DamageDirectionMultiplier: 0.5
@@ -18943,7 +18990,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 32aa65b46c56ea149951a49cec5a1ee4, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

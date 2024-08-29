@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerNetworkController : NetworkBehaviour
 {
+    public CustomTextFeedbackVisualizer customTextFeedbackVisualizer;
     public NetworkVariable<float> horizontalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> verticalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<CharacterStates.MovementStates> characterMovementState = new NetworkVariable<CharacterStates.MovementStates>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -35,6 +36,7 @@ public class PlayerNetworkController : NetworkBehaviour
     
     public override void OnNetworkSpawn()
     {
+        customTextFeedbackVisualizer.Initialize();
         var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
         this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         _character = GetComponent<Character>();
@@ -135,6 +137,7 @@ public class PlayerNetworkController : NetworkBehaviour
     private void OnMovementStateChange()
     {
         characterMovementState.Value = _character.MovementState.CurrentState;
+       //customTextFeedbackVisualizer.VisualizeDamage(Random.Range(0,100).ToString());
     }
 
     private void UpdateClients()
