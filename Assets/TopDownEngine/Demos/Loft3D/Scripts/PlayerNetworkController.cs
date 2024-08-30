@@ -109,6 +109,13 @@ public class PlayerNetworkController : NetworkBehaviour
             _health.DamageDisabled();
         }
 
+        health.OnValueChanged += (float prev, float current) =>
+        {
+            var healthDelta = prev - current;
+            if (healthDelta > 0) {
+                customTextFeedbackVisualizer.VisualizeDamage(healthDelta.ToString());
+            }
+        };
         _character.PlayerID = PlayerID;
         _character.name = PlayerID;
 
