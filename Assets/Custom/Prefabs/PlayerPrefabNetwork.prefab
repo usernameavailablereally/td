@@ -10819,7 +10819,21 @@ MonoBehaviour:
   HotbarInventoryName: 
   InventoryTransform: {fileID: 0}
   WeaponRotationMode: 0
-  AutoPickItems: []
+  AutoPickItems:
+  - Item: {fileID: 11400000, guid: 92a5127290dfd744082bb0652a4ce2b3, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 11fce47de7192b9459a1692d5ac0c68b, type: 2}
+    Quantity: 500
+  - Item: {fileID: 11400000, guid: dce1e4ef2704a194b8cbd6fbdb2ea1a7, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 9cd89b7e9c427dd44bc210e583aade65, type: 2}
+    Quantity: 500
+  - Item: {fileID: 11400000, guid: d8a5413d427069e4a8597776d082a123, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 7d41860316fc2d648b1105937ffcae99, type: 2}
+    Quantity: 500
+  - Item: {fileID: 11400000, guid: bb610d196d5ab482080fc1bd76133a7a, type: 2}
+    Quantity: 1
   AutoPickOnlyIfMainInventoryIsEmpty: 0
   AutoEquipWeaponOnStart: {fileID: 0}
   AutoEquipOnlyIfMainInventoryIsEmpty: 1
@@ -10847,7 +10861,8 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  InitialWeapon: {fileID: 0}
+  InitialWeapon: {fileID: 1266444583457095128, guid: 311b804b71a444fb0a0304c2be1fb346,
+    type: 3}
   CanPickupWeapons: 1
   WeaponUseFeedback: {fileID: 0}
   WeaponAttachment: {fileID: 3617823664589021496}
