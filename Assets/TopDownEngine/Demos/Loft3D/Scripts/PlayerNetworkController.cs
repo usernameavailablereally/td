@@ -31,7 +31,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private Inventory _inventoryMain;
     private Inventory _inventoryWeapon;
-    
+
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -55,6 +56,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
         string PlayerID = "Player1";
         string NetworkPlayerID = "NetworkPlayer" + NetworkObjectId;
+        Debug.Log("Network Player: " + NetworkPlayerID);
         
         if (IsOwner)
         {
@@ -129,6 +131,7 @@ public class PlayerNetworkController : NetworkBehaviour
         if (IsOwner)
         {
             TriggerDeathRpc();
+            NetworkManager.Shutdown();
         }
     }
 
@@ -144,11 +147,12 @@ public class PlayerNetworkController : NetworkBehaviour
             AutoFocus.FocusTargets = new Transform[0];
             AutoFocus.FocusTargetID = 0;
             var players = FindObjectsByType<Character>(FindObjectsSortMode.None);
-            foreach(var player in players)
+            foreach (var player in players)
             {
                 Destroy(player);
             }
         }
+        Debug.Log(_character.PlayerID + " has been disconnected.");
         Destroy(this);
     }
 
