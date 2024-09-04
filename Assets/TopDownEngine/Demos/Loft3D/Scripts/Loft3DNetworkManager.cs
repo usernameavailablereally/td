@@ -1,14 +1,16 @@
 using Unity.Netcode;
 using UnityEngine;
 using Unity.Netcode.Transports.UTP;
+using UnityEngine.SceneManagement;
 
 public class Loft3DNetworkManager : MonoBehaviour
 {
     private static NetworkManager m_NetworkManager;
-    private static string address = "127.0.0.1:7777"; 
+    private static string address = "127.0.0.1:7777";
     void Awake()
     {
         m_NetworkManager = GetComponent<NetworkManager>();
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     void OnGUI()
@@ -18,7 +20,7 @@ public class Loft3DNetworkManager : MonoBehaviour
             GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,
                 Screen.height / 2 - 50,
                 150,
-                Screen.height/4));
+                Screen.height / 4));
             GUILayout.BeginVertical("box");
             address = GUI.TextField(new Rect(5, 5, 140, 20), address, 25);
             GUILayout.Space(25);
@@ -77,5 +79,10 @@ public class Loft3DNetworkManager : MonoBehaviour
                         m_NetworkManager.NetworkConfig.NetworkTransport.GetType()
                             .Name);
         GUILayout.Label("Mode: " + mode);
+    }
+
+    private void OnSceneUnloaded(Scene current)
+    {
+        m_NetworkManager.Shutdown();
     }
 }

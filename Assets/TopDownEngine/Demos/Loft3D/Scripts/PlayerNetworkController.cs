@@ -129,8 +129,10 @@ public class PlayerNetworkController : NetworkBehaviour
     {
         if (IsOwner)
         {
-            TriggerDeathRpc();
-            NetworkManager.Shutdown();
+            var AutoFocus = FindObjectOfType<MMAutoFocus>();
+            AutoFocus.FocusTargets = new Transform[0];
+            AutoFocus.FocusTargetID = 0;
+            //TriggerDeathRpc();
         }
     }
 
@@ -140,18 +142,7 @@ public class PlayerNetworkController : NetworkBehaviour
         _character.SetInputManager(null);
         MMCameraEvent.Trigger(MMCameraEventTypes.StopFollowing);
         MMCameraEvent.Trigger(MMCameraEventTypes.SetTargetCharacter, null);
-        if (IsOwner)
-        {
-            var AutoFocus = FindObjectOfType<MMAutoFocus>();
-            AutoFocus.FocusTargets = new Transform[0];
-            AutoFocus.FocusTargetID = 0;
-            var players = FindObjectsByType<Character>(FindObjectsSortMode.None);
-            foreach (var player in players)
-            {
-                Destroy(player);
-            }
-        }
-        Destroy(this);
+        _health.Kill();
     }
 
     private void UpdateOwner()
@@ -215,7 +206,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public void TriggerReloadRpc() => ReloadRpc();
 
     [Rpc(SendTo.Server)]
-    public void TriggerDeathRpc() => NetworkObject.Despawn();
+    public void TriggerDeathRpc() => DieRpc();
 
     [Rpc(SendTo.Server)]
     public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID, rpcParams);
@@ -228,6 +219,9 @@ public class PlayerNetworkController : NetworkBehaviour
 
     [Rpc(SendTo.NotOwner)]
     void ReloadRpc() => _characterHandleWeapon.Reload();
+
+    [Rpc(SendTo.NotServer)]
+    void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
     void UpdatePlayerWeaponRpc(string weaponID, RpcParams rpcParams = default)
