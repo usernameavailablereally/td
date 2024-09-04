@@ -143,7 +143,6 @@ public class PlayerNetworkController : NetworkBehaviour
             var AutoFocus = FindObjectOfType<MMAutoFocus>();
             AutoFocus.FocusTargets = new Transform[0];
             AutoFocus.FocusTargetID = 0;
-            LevelManager.Instance.ResetPlayers();
             var players = FindObjectsByType<Character>(FindObjectsSortMode.None);
             foreach(var player in players)
             {
