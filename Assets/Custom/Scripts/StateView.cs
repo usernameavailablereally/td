@@ -76,6 +76,7 @@ public class StateView : MonoBehaviour
         return stateName switch
         {
             "LookingAtTarget" => _detectionView,
+            "LookingAtNoise" => _seekingView,
             "SeekingPlayer" => _seekingView,
             "SeekingNoise" => _seekingView,
             "Destroying" => _destroyingView,

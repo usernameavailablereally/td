@@ -238,6 +238,11 @@ namespace MoreMountains.TopDownEngine
 			{
 				return;
 			}
+			
+			if (CurrentWeapon.name == "WeaponThrowableBottle")
+			{
+				return;
+			}
 
 			bool inputAuthorized = true;
 			if (CurrentWeapon != null)

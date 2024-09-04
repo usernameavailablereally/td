@@ -881,6 +881,7 @@ GameObject:
   - component: {fileID: 2646068486438134791}
   - component: {fileID: 1227910854739643621}
   - component: {fileID: 4719932922219062605}
+  - component: {fileID: 6796773064842851279}
   m_Layer: 13
   m_Name: Actions
   m_TagString: Untagged
@@ -1121,6 +1122,20 @@ MonoBehaviour:
   InitializationMode: 0
   Label: 
   _view: {fileID: 2659564640636091405}
+--- !u!114 &6796773064842851279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169738128582594341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5559a158b84e729a6ced6e619fdc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
 --- !u!1 &1214323013815474009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1158,7 @@ GameObject:
   - component: {fileID: 3083162747944276827}
   - component: {fileID: 8967988570374347674}
   - component: {fileID: 640889275008861569}
+  - component: {fileID: 8157872888070412065}
   m_Layer: 13
   m_Name: Decisions
   m_TagString: Untagged
@@ -1389,6 +1405,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: 
   MinTimeInState: 3
+--- !u!114 &8157872888070412065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214323013815474009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6984c30be5449996d7824310ec98e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: 
+  _distanceTreshold: 1
+  _noPathTreshold: 1.5
 --- !u!1 &1502242629788427699
 GameObject:
   m_ObjectHideFlags: 0
@@ -13277,6 +13308,9 @@ MonoBehaviour:
       - Decision: {fileID: 9010145239798539907}
         TrueState: SeekingPlayer
         FalseState: 
+      - Decision: {fileID: 8157872888070412065}
+        TrueState: LookingAtNoise
+        FalseState: 
   - StateName: SeekingPlayer
     Actions:
       array:
@@ -13289,6 +13323,24 @@ MonoBehaviour:
         TrueState: LookingAtTarget
         FalseState: 
       - Decision: {fileID: 3083162747944276827}
+        TrueState: BackToPatrolling
+        FalseState: 
+  - StateName: LookingAtNoise
+    Actions:
+      array:
+      - {fileID: 4419744308983976690}
+      - {fileID: 2646068486438134791}
+      - {fileID: 1227910854739643621}
+      - {fileID: 6796773064842851279}
+    Transitions:
+      array:
+      - Decision: {fileID: 6948562715661795201}
+        TrueState: 
+        FalseState: 
+      - Decision: {fileID: 8967988570374347674}
+        TrueState: Destroying
+        FalseState: 
+      - Decision: {fileID: 640889275008861569}
         TrueState: BackToPatrolling
         FalseState: 
   - StateName: LookingAtTarget
