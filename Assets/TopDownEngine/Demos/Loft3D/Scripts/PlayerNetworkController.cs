@@ -39,7 +39,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
         customTextFeedbackVisualizer.Initialize();
         var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-        this.transform.position = LevelManager.Instance.InitialSpawnPoints[1].transform.position;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
@@ -56,7 +56,6 @@ public class PlayerNetworkController : NetworkBehaviour
 
         string PlayerID = "Player1";
         string NetworkPlayerID = "NetworkPlayer" + NetworkObjectId;
-        Debug.Log("Network Player: " + NetworkPlayerID);
         
         if (IsOwner)
         {
@@ -152,7 +151,6 @@ public class PlayerNetworkController : NetworkBehaviour
                 Destroy(player);
             }
         }
-        Debug.Log(_character.PlayerID + " has been disconnected.");
         Destroy(this);
     }
 
