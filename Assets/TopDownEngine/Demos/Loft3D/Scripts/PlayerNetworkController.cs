@@ -2,7 +2,7 @@ using MoreMountains.InventoryEngine;
 using MoreMountains.TopDownEngine;
 using Unity.Netcode;
 using UnityEngine;
-
+using MoreMountains.FeedbacksForThirdParty;
 
 public class PlayerNetworkController : NetworkBehaviour
 {
@@ -10,19 +10,17 @@ public class PlayerNetworkController : NetworkBehaviour
     public NetworkVariable<float> horizontalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> verticalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<CharacterStates.MovementStates> characterMovementState = new NetworkVariable<CharacterStates.MovementStates>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    
+
     public NetworkVariable<Vector3> position = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> rotation = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> weaponAim = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public float maxPositionDeviation = 0.3f;
-    
-    private Vector3 _prevPosition;
+
     private TopDownController3D _controller;
     private CharacterMovement _characterMovement;
     private CharacterJump3D _characterJump;
-    private CharacterDash3D _characterDash;
     private Health _health;
     private CharacterCrouch _characterCrouch;
     private CharacterRun _characterRun;
@@ -36,13 +34,14 @@ public class PlayerNetworkController : NetworkBehaviour
     
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         customTextFeedbackVisualizer.Initialize();
-        var spawnPointsNumber = (int) NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
+        var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
+        this.transform.position = LevelManager.Instance.InitialSpawnPoints[1].transform.position;
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
-        _characterDash = GetComponent<CharacterDash3D>();
         _characterCrouch = GetComponent<CharacterCrouch>();
         _characterRun = GetComponent<CharacterRun>();
         _characterHandleWeapon = GetComponent<CharacterHandleWeapon>();
@@ -55,6 +54,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
 
         string PlayerID = "Player1";
+        string NetworkPlayerID = "NetworkPlayer" + NetworkObjectId;
+        
         if (IsOwner)
         {
             _character.CharacterType = Character.CharacterTypes.Player;
@@ -74,11 +75,11 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.OnShootStart += () => TriggerShootStartRpc();
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
+
         }
         else
         {
-            PlayerID = "NetworkPlayer" + NetworkObjectId;
-            _prevPosition = gameObject.transform.position;
+            PlayerID = NetworkPlayerID;
             _characterMovement.ScriptDrivenInput = true;
             _character.CharacterType = Character.CharacterTypes.AI;
             _character.SetInputManager(null);
@@ -92,7 +93,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryMain.PlayerID = PlayerID;
             _inventoryMain.Content = new InventoryItem[24];
             _inventoryMain.SetOwner(gameObject);
-            
+
             _inventoryWeapon = GameObject.Find(_characterInventory.WeaponInventoryName).AddComponent<Inventory>();
             _inventoryWeapon.PlayerID = PlayerID;
             _inventoryWeapon.Content = new InventoryItem[1];
@@ -104,7 +105,7 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             health.Value = _health.CurrentHealth;
             _health.OnHit += () => health.Value = _health.CurrentHealth;
-            _health.OnDeath += () => TriggerDeathRpc();
+            _health.OnDeath += TriggerDeathRpc;
         } else {
             _health.DamageDisabled();
         }
@@ -122,12 +123,34 @@ public class PlayerNetworkController : NetworkBehaviour
         _characterInventory.PlayerID = PlayerID;
     }
 
+
+    public override void OnDestroy()
+    {
+        if (IsOwner)
+        {
+            TriggerDeathRpc();
+        }
+    }
+
     public override void OnNetworkDespawn()
     {
+        _health.OnDeath -= TriggerDeathRpc;
         _character.SetInputManager(null);
         MMCameraEvent.Trigger(MMCameraEventTypes.StopFollowing);
         MMCameraEvent.Trigger(MMCameraEventTypes.SetTargetCharacter, null);
-        _character.CharacterHealth.Kill();
+        if (IsOwner)
+        {
+            var AutoFocus = FindObjectOfType<MMAutoFocus>();
+            AutoFocus.FocusTargets = new Transform[0];
+            AutoFocus.FocusTargetID = 0;
+            LevelManager.Instance.ResetPlayers();
+            var players = FindObjectsByType<Character>(FindObjectsSortMode.None);
+            foreach(var player in players)
+            {
+                Destroy(player);
+            }
+        }
+        Destroy(this);
     }
 
     private void UpdateOwner()
@@ -144,7 +167,6 @@ public class PlayerNetworkController : NetworkBehaviour
     private void OnMovementStateChange()
     {
         characterMovementState.Value = _character.MovementState.CurrentState;
-       //customTextFeedbackVisualizer.VisualizeDamage(Random.Range(0,100).ToString());
     }
 
     private void UpdateClients()
@@ -155,18 +177,18 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             _controller.MovePosition(position.Value);
         }
-        if (characterMovementState.Value == CharacterStates.MovementStates.Jumping) 
-            _characterJump.JumpStart(); 
+        if (characterMovementState.Value == CharacterStates.MovementStates.Jumping)
+            _characterJump.JumpStart();
         else
-            _characterJump.JumpStop(); 
-        
-        if (characterMovementState.Value == CharacterStates.MovementStates.Crouching || characterMovementState.Value == CharacterStates.MovementStates.Crawling) 
-            _characterCrouch.StartForcedCrouch(); 
-        else 
+            _characterJump.JumpStop();
+
+        if (characterMovementState.Value == CharacterStates.MovementStates.Crouching || characterMovementState.Value == CharacterStates.MovementStates.Crawling)
+            _characterCrouch.StartForcedCrouch();
+        else
             _characterCrouch.StopForcedCrouch();
-        
-        if (characterMovementState.Value == CharacterStates.MovementStates.Running) 
-            _characterRun.RunStart(); 
+
+        if (characterMovementState.Value == CharacterStates.MovementStates.Running)
+            _characterRun.RunStart();
         else if (characterMovementState.Value != CharacterStates.MovementStates.Jumping)
             _characterRun.RunStop();
 
@@ -192,7 +214,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public void TriggerReloadRpc() => ReloadRpc();
 
     [Rpc(SendTo.Server)]
-    public void TriggerDeathRpc() => DieRpc();
+    public void TriggerDeathRpc() => NetworkObject.Despawn();
 
     [Rpc(SendTo.Server)]
     public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID, rpcParams);
@@ -205,9 +227,6 @@ public class PlayerNetworkController : NetworkBehaviour
 
     [Rpc(SendTo.NotOwner)]
     void ReloadRpc() => _characterHandleWeapon.Reload();
-
-    [Rpc(SendTo.NotServer)]
-    void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
     void UpdatePlayerWeaponRpc(string weaponID, RpcParams rpcParams = default)
