@@ -3,7 +3,10 @@ using MoreMountains.TopDownEngine;
 using Unity.Netcode;
 using UnityEngine;
 using MoreMountains.FeedbacksForThirdParty;
+using Unity.Collections;
 
+
+[GenerateSerializationForType(typeof(byte))]
 public class PlayerNetworkController : NetworkBehaviour
 {
     public CustomTextFeedbackVisualizer customTextFeedbackVisualizer;
@@ -13,6 +16,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public NetworkVariable<Vector3> position = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Vector3> rotation = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<FixedString32Bytes> weaponCurrent = new NetworkVariable<FixedString32Bytes>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     public NetworkVariable<Vector3> weaponAim = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
@@ -38,8 +43,15 @@ public class PlayerNetworkController : NetworkBehaviour
         base.OnNetworkSpawn();
 
         customTextFeedbackVisualizer.Initialize();
-        var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-        this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
+        if (IsOwner || position.Value == Vector3.zero)
+        {
+            var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
+            this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
+        } else
+        {
+            this.transform.position = position.Value;
+        }
+
         _character = GetComponent<Character>();
         _controller = GetComponent<TopDownController3D>();
         _characterJump = GetComponent<CharacterJump3D>();
@@ -70,13 +82,14 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.OnWeaponChange += () =>
             {
                 var weaponID = _characterHandleWeapon.CurrentWeapon ? _characterHandleWeapon.CurrentWeapon.WeaponID : "";
-                ChangeWeaponRpc(weaponID);
+                weaponCurrent.Value = weaponID;
             };
 
             _characterHandleWeapon.OnShootStart += () => TriggerShootStartRpc();
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
 
+            weaponCurrent.Value = new FixedString32Bytes("Sword");
         }
         else
         {
@@ -94,6 +107,13 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryMain.PlayerID = PlayerID;
             _inventoryMain.Content = new InventoryItem[24];
             _inventoryMain.SetOwner(gameObject);
+            if ((_characterInventory.AutoPickItems.Length > 0))
+            {
+                foreach (AutoPickItem item in _characterInventory.AutoPickItems)
+                {
+                    _inventoryMain.AddItem(item.Item, item.Quantity);
+                }
+            }
 
             _inventoryWeapon = GameObject.Find(_characterInventory.WeaponInventoryName).AddComponent<Inventory>();
             _inventoryWeapon.PlayerID = PlayerID;
@@ -118,30 +138,40 @@ public class PlayerNetworkController : NetworkBehaviour
                 customTextFeedbackVisualizer.VisualizeDamage(healthDelta.ToString());
             }
         };
+
+
+        weaponCurrent.OnValueChanged += (FixedString32Bytes prev, FixedString32Bytes next) => UpdatePlayerWeapon(next.ToString());
+
         _character.PlayerID = PlayerID;
         _character.name = PlayerID;
 
         _characterInventory.PlayerID = PlayerID;
+        if (!IsOwner)
+        {
+            _characterHandleWeapon.InitialWeapon = null;
+            UpdatePlayerWeapon(weaponCurrent.Value.ToString());
+        }
     }
-
 
     public override void OnDestroy()
     {
         if (IsOwner)
         {
+            _character.SetInputManager(null);
+            MMCameraEvent.Trigger(MMCameraEventTypes.StopFollowing);
+            MMCameraEvent.Trigger(MMCameraEventTypes.SetTargetCharacter, null);
             var AutoFocus = FindObjectOfType<MMAutoFocus>();
-            AutoFocus.FocusTargets = new Transform[0];
-            AutoFocus.FocusTargetID = 0;
-            //TriggerDeathRpc();
+            if (AutoFocus)
+            {
+                AutoFocus.FocusTargets = new Transform[0];
+                AutoFocus.FocusTargetID = 0;
+            }
         }
     }
 
     public override void OnNetworkDespawn()
     {
         _health.OnDeath -= TriggerDeathRpc;
-        _character.SetInputManager(null);
-        MMCameraEvent.Trigger(MMCameraEventTypes.StopFollowing);
-        MMCameraEvent.Trigger(MMCameraEventTypes.SetTargetCharacter, null);
         _health.Kill();
     }
 
@@ -186,7 +216,9 @@ public class PlayerNetworkController : NetworkBehaviour
 
         if (weaponAim.Value != Vector3.zero)
         {
-            _characterHandleWeapon.WeaponAimComponent.enabled = false;
+            if (_characterHandleWeapon.WeaponAimComponent) {
+                _characterHandleWeapon.WeaponAimComponent.enabled = false;
+            }
             _characterHandleWeapon.ForceWeaponAimControl = true;
             _characterHandleWeapon.ForcedWeaponAimControl = WeaponAim.AimControls.Script;
             _characterHandleWeapon.WeaponAimComponent.SetCurrentAim(weaponAim.Value);
@@ -221,10 +253,11 @@ public class PlayerNetworkController : NetworkBehaviour
     void ReloadRpc() => _characterHandleWeapon.Reload();
 
     [Rpc(SendTo.NotServer)]
-    void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
-    void UpdatePlayerWeaponRpc(string weaponID, RpcParams rpcParams = default)
+    void UpdatePlayerWeaponRpc(string weaponID) => UpdatePlayerWeapon(weaponID);
+
+    void UpdatePlayerWeapon(string weaponID)
     {
         if (weaponID == "")
         {
