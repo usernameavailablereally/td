@@ -46,7 +46,7 @@ public class PlayerNetworkController : NetworkBehaviour
         if (IsOwner || position.Value == Vector3.zero)
         {
             var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-            this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
+            this.transform.position = LevelManager.Instance.InitialSpawnPoints[1].transform.position;
         } else
         {
             this.transform.position = position.Value;
@@ -241,7 +241,7 @@ public class PlayerNetworkController : NetworkBehaviour
     public void TriggerDeathRpc() => DieRpc();
 
     [Rpc(SendTo.Server)]
-    public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID, rpcParams);
+    public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID);
 
     [Rpc(SendTo.NotOwner)]
     void ShootStartRpc() => _characterHandleWeapon.ShootStart();
@@ -253,6 +253,7 @@ public class PlayerNetworkController : NetworkBehaviour
     void ReloadRpc() => _characterHandleWeapon.Reload();
 
     [Rpc(SendTo.NotServer)]
+    void DieRpc() => _health.Kill();
 
     [Rpc(SendTo.ClientsAndHost)]
     void UpdatePlayerWeaponRpc(string weaponID) => UpdatePlayerWeapon(weaponID);
