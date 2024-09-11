@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using MoreMountains.FeedbacksForThirdParty;
 using Unity.Collections;
-
+using MoreMountains.Feedbacks;
 
 [GenerateSerializationForType(typeof(byte))]
 public class PlayerNetworkController : NetworkBehaviour
@@ -287,6 +287,18 @@ public class PlayerNetworkController : NetworkBehaviour
                     {
                         item.TargetEquipmentInventoryName = _characterInventory.WeaponInventoryName;
                         _inventoryMain.EquipItem(item, index);
+                        var currentWeapon = _characterHandleWeapon.CurrentWeapon;
+                        MMF_Player[] feedbackPlayers = currentWeapon.GetComponentsInChildren<MMF_Player>(true);
+                        foreach (var feedbackPlayer in feedbackPlayers)
+                        {
+                            foreach (var feedback in feedbackPlayer.FeedbacksList)
+                            {
+                                if (feedback.Label == "Flash" || feedback.Label == "Cinemachine Impulse")
+                                {
+                                    feedback.Active = false;
+                                }
+                            }
+                        }
                         break;
                     }
                     index++;
