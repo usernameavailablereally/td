@@ -218,10 +218,10 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             if (_characterHandleWeapon.WeaponAimComponent) {
                 _characterHandleWeapon.WeaponAimComponent.enabled = false;
+                _characterHandleWeapon.WeaponAimComponent.SetCurrentAim(weaponAim.Value);
             }
             _characterHandleWeapon.ForceWeaponAimControl = true;
             _characterHandleWeapon.ForcedWeaponAimControl = WeaponAim.AimControls.Script;
-            _characterHandleWeapon.WeaponAimComponent.SetCurrentAim(weaponAim.Value);
 
         } else
         {
