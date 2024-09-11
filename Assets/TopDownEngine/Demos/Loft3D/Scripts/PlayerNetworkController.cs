@@ -46,7 +46,7 @@ public class PlayerNetworkController : NetworkBehaviour
         if (IsOwner || position.Value == Vector3.zero)
         {
             var spawnPointsNumber = (int)NetworkObjectId % LevelManager.Instance.InitialSpawnPoints.Count;
-            this.transform.position = LevelManager.Instance.InitialSpawnPoints[1].transform.position;
+            this.transform.position = LevelManager.Instance.InitialSpawnPoints[spawnPointsNumber].transform.position;
         } else
         {
             this.transform.position = position.Value;
