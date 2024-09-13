@@ -123,6 +123,8 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.Content = new InventoryItem[1];
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
+
+            UpdatePlayerWeapon(weaponCurrent.ToString());
         }
 
         if (IsServer)
