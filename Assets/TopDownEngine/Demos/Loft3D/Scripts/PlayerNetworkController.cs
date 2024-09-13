@@ -160,7 +160,7 @@ public class PlayerNetworkController : NetworkBehaviour
             nicknameController.SetNickname(next.ToString());
         };
 
-        if (IsOwner || IsHost)
+        if (IsOwner)
         {
             var cachedNick = nicknameController.LoadCachedNicknameFromStorage();
             PlayerNickname.Value = cachedNick;
