@@ -92,7 +92,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
 
-            weaponCurrent.Value = new FixedString32Bytes("Sword");
+            weaponCurrent.Value = new FixedString32Bytes(_characterHandleWeapon.InitialWeapon.WeaponName);
         }
         else
         {
@@ -124,7 +124,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
 
-            UpdatePlayerWeapon(weaponCurrent.ToString());
+            UpdatePlayerWeapon(weaponCurrent.Value.ToString());
         }
 
         if (IsServer)
