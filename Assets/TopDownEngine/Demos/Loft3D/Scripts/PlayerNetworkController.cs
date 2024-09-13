@@ -155,12 +155,12 @@ public class PlayerNetworkController : NetworkBehaviour
             UpdatePlayerWeapon(weaponCurrent.Value.ToString());
         }
 
-        if (IsOwner)
+        if (IsOwner || IsHost)
         {
             var cachedNick = nicknameController.LoadCachedNicknameFromStorage();
             PlayerNickname.Value = cachedNick;
         }
-        nicknameController.SetNickname(PlayerNickname.Value.ToString());
+        
     }
 
     public override void OnDestroy()
@@ -187,6 +187,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private void UpdateOwner()
     {
+        nicknameController.SetNickname(PlayerNickname.Value.ToString());
         horizontalMovement.Value = _inputManager.PrimaryMovement.x;
         verticalMovement.Value = _inputManager.PrimaryMovement.y;
         position.Value = gameObject.transform.position;
