@@ -5,11 +5,13 @@ using UnityEngine;
 using MoreMountains.FeedbacksForThirdParty;
 using Unity.Collections;
 using MoreMountains.Feedbacks;
+using UnityEngine.Serialization;
 
 [GenerateSerializationForType(typeof(byte))]
 public class PlayerNetworkController : NetworkBehaviour
 {
     public CustomTextFeedbackVisualizer customTextFeedbackVisualizer;
+    public NicknameController nicknameController;
     public NetworkVariable<float> horizontalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> verticalMovement = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<CharacterStates.MovementStates> characterMovementState = new NetworkVariable<CharacterStates.MovementStates>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -20,7 +22,8 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public NetworkVariable<Vector3> weaponAim = new NetworkVariable<Vector3>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> health = new NetworkVariable<float>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
+    public NetworkVariable<FixedString32Bytes> PlayerNickname = new NetworkVariable<FixedString32Bytes>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    
     public float maxPositionDeviation = 0.3f;
 
     private TopDownController3D _controller;
@@ -151,6 +154,13 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.InitialWeapon = null;
             UpdatePlayerWeapon(weaponCurrent.Value.ToString());
         }
+
+        if (IsOwner)
+        {
+            var cachedNick = nicknameController.LoadCachedNicknameFromStorage();
+            PlayerNickname.Value = cachedNick;
+        }
+        nicknameController.SetNickname(PlayerNickname.Value.ToString());
     }
 
     public override void OnDestroy()
