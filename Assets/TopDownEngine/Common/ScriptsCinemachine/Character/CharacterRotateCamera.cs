@@ -61,7 +61,7 @@ namespace MoreMountains.TopDownEngine
 			base.Initialization();
 			_mainCamera = Camera.main;
 			StartCoroutine(DelayedInitialization());
-			if (AutoSetupInputManager)
+			if (AutoSetupInputManager && _inputManager != null)
 			{
 				_inputManager.RotateInputBasedOnCameraDirection = true;
 				bool camera3D = (_character.CharacterDimension == Character.CharacterDimensions.Type3D);

@@ -165,6 +165,8 @@ public class PlayerNetworkController : NetworkBehaviour
             var cachedNick = nicknameController.LoadCachedNicknameFromStorage();
             PlayerNickname.Value = cachedNick;
         }
+        
+        nicknameController.SetNickname(PlayerNickname.Value.ToString());
     }
 
     public override void OnDestroy()
@@ -206,7 +208,7 @@ public class PlayerNetworkController : NetworkBehaviour
     }
 
     private void UpdateClients()
-    {
+    { 
         _characterMovement.SetMovement(new Vector2(horizontalMovement.Value, verticalMovement.Value));
         float positionDeviation = Vector3.Distance(gameObject.transform.position, position.Value);
         if (positionDeviation > maxPositionDeviation)
