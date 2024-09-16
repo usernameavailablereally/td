@@ -5203,13 +5203,13 @@ MonoBehaviour:
   WeaponName: 
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
-  TriggerMode: 0
+  TriggerMode: 1
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 1
-  TimeBetweenUses: 0.4
+  TimeBetweenUses: 0.1
   TimeBetweenUsesReleaseInterruption: 1
   IsSilent: 0
-  UseBurstMode: 1
+  UseBurstMode: 0
   BurstLength: 3
   BurstTimeBetweenShots: 0.1
   MagazineBased: 0
@@ -5231,7 +5231,7 @@ MonoBehaviour:
   LeftHandHandle: {fileID: 4041226640243308}
   RightHandHandle: {fileID: 4586220902883270}
   ModifyMovementWhileAttacking: 1
-  MovementMultiplier: 0.5
+  MovementMultiplier: 0.7
   PreventAllMovementWhileInUse: 0
   PreventAllAimWhileInUse: 0
   RecoilForce: 0
@@ -5268,7 +5268,7 @@ MonoBehaviour:
   ProjectilesPerShot: 1
   SpawnTransforms: []
   SpawnTransformsMode: 1
-  Spread: {x: 5, y: 5, z: 5}
+  Spread: {x: 1, y: 1, z: 1}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
   SpawnPosition: {x: 0, y: 0.16, z: 0.57}
