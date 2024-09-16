@@ -68,10 +68,14 @@ public class PlayerNetworkController : NetworkBehaviour
 
         _characterMovement = GetComponent<CharacterMovement>();
 
-
-        string PlayerID = "Player1";
         string NetworkPlayerID = "NetworkPlayer" + NetworkObjectId;
-        
+        string PlayerID = IsOwner ? "Player1" : NetworkPlayerID;
+
+        _character.PlayerID = PlayerID;
+        _character.name = PlayerID;
+
+        _characterInventory.PlayerID = PlayerID;
+
         if (IsOwner)
         {
             _character.CharacterType = Character.CharacterTypes.Player;
@@ -92,11 +96,11 @@ public class PlayerNetworkController : NetworkBehaviour
             _characterHandleWeapon.OnShootStop += () => TriggerShootStopRpc();
             _characterHandleWeapon.OnReload += () => TriggerReloadRpc();
 
-            weaponCurrent.Value = new FixedString32Bytes(_characterHandleWeapon.InitialWeapon.WeaponName);
+            weaponCurrent.Value = new FixedString32Bytes(_characterHandleWeapon.InitialWeapon.name);
+            PlayerNickname.Value = nicknameController.LoadCachedNicknameFromStorage();
         }
         else
         {
-            PlayerID = NetworkPlayerID;
             _characterMovement.ScriptDrivenInput = true;
             _character.CharacterType = Character.CharacterTypes.AI;
             _character.SetInputManager(null);
@@ -124,6 +128,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.SetOwner(gameObject);
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
 
+            _characterHandleWeapon.InitialWeapon = null;
             UpdatePlayerWeapon(weaponCurrent.Value.ToString());
         }
 
@@ -147,27 +152,11 @@ public class PlayerNetworkController : NetworkBehaviour
 
         weaponCurrent.OnValueChanged += (FixedString32Bytes prev, FixedString32Bytes next) => UpdatePlayerWeapon(next.ToString());
 
-        _character.PlayerID = PlayerID;
-        _character.name = PlayerID;
-
-        _characterInventory.PlayerID = PlayerID;
-        if (!IsOwner)
-        {
-            _characterHandleWeapon.InitialWeapon = null;
-            UpdatePlayerWeapon(weaponCurrent.Value.ToString());
-        }
-        
         PlayerNickname.OnValueChanged += (FixedString32Bytes prev, FixedString32Bytes next) =>
         {
             nicknameController.SetNickname(next.ToString());
         };
 
-        if (IsOwner)
-        {
-            var cachedNick = nicknameController.LoadCachedNicknameFromStorage();
-            PlayerNickname.Value = cachedNick;
-        }
-        
         nicknameController.SetNickname(PlayerNickname.Value.ToString());
     }
 
@@ -258,9 +247,6 @@ public class PlayerNetworkController : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TriggerDeathRpc() => DieRpc();
 
-    [Rpc(SendTo.Server)]
-    public void ChangeWeaponRpc(string weaponID, RpcParams rpcParams = default) => UpdatePlayerWeaponRpc(weaponID);
-
     [Rpc(SendTo.NotOwner)]
     void ShootStartRpc() => _characterHandleWeapon.ShootStart();
 
@@ -272,9 +258,6 @@ public class PlayerNetworkController : NetworkBehaviour
 
     [Rpc(SendTo.NotServer)]
     void DieRpc() => _health.Kill();
-
-    [Rpc(SendTo.ClientsAndHost)]
-    void UpdatePlayerWeaponRpc(string weaponID) => UpdatePlayerWeapon(weaponID);
 
     void UpdatePlayerWeapon(string weaponID)
     {
@@ -305,18 +288,21 @@ public class PlayerNetworkController : NetworkBehaviour
                     {
                         item.TargetEquipmentInventoryName = _characterInventory.WeaponInventoryName;
                         _inventoryMain.EquipItem(item, index);
-                        var currentWeapon = _characterHandleWeapon.CurrentWeapon;
-                        MMF_Player[] feedbackPlayers = currentWeapon.GetComponentsInChildren<MMF_Player>(true);
-                        foreach (var feedbackPlayer in feedbackPlayers)
+                        if (_characterHandleWeapon.CurrentWeapon)
                         {
-                            foreach (var feedback in feedbackPlayer.FeedbacksList)
+                            MMF_Player[] feedbackPlayers = _characterHandleWeapon.CurrentWeapon.GetComponentsInChildren<MMF_Player>(true);
+                            foreach (var feedbackPlayer in feedbackPlayers)
                             {
-                                if (feedback.Label == "Flash" || feedback.Label == "Cinemachine Impulse")
+                                foreach (var feedback in feedbackPlayer.FeedbacksList)
                                 {
-                                    feedback.Active = false;
+                                    if (feedback.Label == "Flash" || feedback.Label == "Cinemachine Impulse")
+                                    {
+                                        feedback.Active = false;
+                                    }
                                 }
                             }
                         }
+                        
                         break;
                     }
                     index++;
