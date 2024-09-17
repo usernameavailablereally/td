@@ -26199,7 +26199,7 @@ MonoBehaviour:
     - rid: 1
       type: {class: MMF_Flash, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1043000147
         Label: Flash
         ChannelMode: 0
