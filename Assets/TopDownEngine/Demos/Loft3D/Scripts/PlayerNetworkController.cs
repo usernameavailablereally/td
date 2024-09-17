@@ -139,6 +139,7 @@ public class PlayerNetworkController : NetworkBehaviour
             _health.OnDeath += TriggerDeathRpc;
         } else {
             _health.DamageDisabled();
+            GameEvents
         }
 
         health.OnValueChanged += (float prev, float current) =>
