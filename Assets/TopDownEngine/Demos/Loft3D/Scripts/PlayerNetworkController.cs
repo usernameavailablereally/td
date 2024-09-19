@@ -129,6 +129,20 @@ public class PlayerNetworkController : NetworkBehaviour
             _inventoryWeapon.InventoryType = Inventory.InventoryTypes.Equipment;
 
             _characterHandleWeapon.InitialWeapon = null;
+
+            MMF_Player[] feedbackPlayers = GetComponentsInChildren<MMF_Player>(true);
+            foreach (var feedbackPlayer in feedbackPlayers)
+            {
+                if (feedbackPlayer.name == "DamageFeedback")
+                {
+                    foreach (var feedback in feedbackPlayer.FeedbacksList)
+                    {
+                        if (feedback.Label == "Flash") feedback.Active = false;
+                    }
+                }
+                
+            }
+
             UpdatePlayerWeapon(weaponCurrent.Value.ToString());
         }
 
