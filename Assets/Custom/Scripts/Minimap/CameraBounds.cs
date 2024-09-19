@@ -23,11 +23,12 @@ public class CameraBounds : MonoBehaviour
 
         Vector3 sizeProjected = camTransform.TransformVector(sizeXY);
         _min = (camPosition - sizeProjected / 2).GetXZ();
-        _max = (camPosition + sizeProjected / 2).GetXZ();
+        _max = (camPosition + sizeProjected / 2).GetXZ() - _min;
     }
 
     public Vector2 GetRelativePositionPercent(Vector3 vec)
     {
-        return Vector2.zero;
+        Vector2 localVector = vec.GetXZ() - _min;
+        return localVector.DivideAxiswise(_max);
     }
 }

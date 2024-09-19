@@ -139,7 +139,6 @@ public class PlayerNetworkController : NetworkBehaviour
             _health.OnDeath += TriggerDeathRpc;
         } else {
             _health.DamageDisabled();
-            GameEvents
         }
 
         health.OnValueChanged += (float prev, float current) =>
@@ -159,6 +158,9 @@ public class PlayerNetworkController : NetworkBehaviour
         };
 
         nicknameController.SetNickname(PlayerNickname.Value.ToString());
+        
+        var spawnParams = new PlayerSpawnParams(_character.transform, _character, IsOwner);
+        GameEvents.Instance.OnPlayerSpawned.Trigger(spawnParams);
     }
 
     public override void OnDestroy()
@@ -258,7 +260,11 @@ public class PlayerNetworkController : NetworkBehaviour
     void ReloadRpc() => _characterHandleWeapon.Reload();
 
     [Rpc(SendTo.NotServer)]
-    void DieRpc() => _health.Kill();
+    void DieRpc()
+    {
+        GameEvents.Instance.OnPlayerDeath.Trigger(_character.transform);
+        _health.Kill();
+    }
 
     void UpdatePlayerWeapon(string weaponID)
     {
