@@ -15,6 +15,8 @@ public class Loft3DNetworkManager : MonoBehaviour
 
     void OnGUI()
     {
+        if (SceneManager.GetActiveScene().name == "LoadingScreen") return;
+
         if (!m_NetworkManager.IsClient && !m_NetworkManager.IsServer)
         {
             GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,

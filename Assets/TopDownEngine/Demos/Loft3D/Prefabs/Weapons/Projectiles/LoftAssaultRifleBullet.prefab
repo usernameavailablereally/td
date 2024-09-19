@@ -5061,8 +5061,8 @@ MonoBehaviour:
     m_Bits: 12032
   Owner: {fileID: 0}
   TriggerFilter: 195
-  MinDamageCaused: 10
-  MaxDamageCaused: 10
+  MinDamageCaused: 25
+  MaxDamageCaused: 30
   TypedDamages: []
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1
@@ -5112,7 +5112,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &54994276034465240
 Rigidbody:

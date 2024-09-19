@@ -20278,7 +20278,7 @@ MonoBehaviour:
   TriggerMode: 0
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 1
-  TimeBetweenUses: 0.8
+  TimeBetweenUses: 1
   TimeBetweenUsesReleaseInterruption: 1
   IsSilent: 0
   UseBurstMode: 0
@@ -20303,10 +20303,10 @@ MonoBehaviour:
   LeftHandHandle: {fileID: 4446742278497662}
   RightHandHandle: {fileID: 4776933758515460}
   ModifyMovementWhileAttacking: 0
-  MovementMultiplier: 0
+  MovementMultiplier: 0.5
   PreventAllMovementWhileInUse: 0
   PreventAllAimWhileInUse: 0
-  RecoilForce: 0
+  RecoilForce: 2
   Animators:
   - {fileID: 95889161802339608}
   PerformAnimatorSanityChecks: 0
@@ -20337,10 +20337,10 @@ MonoBehaviour:
   Flipped: 0
   ProjectileSpawnOffset: {x: 0, y: 0.16, z: 0.57}
   DefaultProjectileDirection: {x: 0, y: 0, z: 1}
-  ProjectilesPerShot: 5
+  ProjectilesPerShot: 4
   SpawnTransforms: []
   SpawnTransformsMode: 1
-  Spread: {x: 5, y: 5, z: 5}
+  Spread: {x: 7, y: 7, z: 7}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
   SpawnPosition: {x: 0, y: 0.16, z: 0.57}
@@ -20836,7 +20836,7 @@ MonoBehaviour:
     - rid: 1
       type: {class: MMF_Flash, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1417193029
         Label: Flash
         ChannelMode: 0

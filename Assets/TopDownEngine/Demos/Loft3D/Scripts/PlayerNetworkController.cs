@@ -176,6 +176,23 @@ public class PlayerNetworkController : NetworkBehaviour
                 AutoFocus.FocusTargets = new Transform[0];
                 AutoFocus.FocusTargetID = 0;
             }
+        } else {
+            foreach (var inventory in _inventoryMain.GetComponents<Inventory>())
+            {
+                if (inventory.PlayerID == _character.PlayerID)
+                {
+                    Destroy(inventory);
+                }
+            }
+
+            foreach (var inventory in _inventoryWeapon.GetComponents<Inventory>())
+            {
+                if (inventory.PlayerID == _character.PlayerID)
+                {
+                    Destroy(inventory);
+                }
+            }
+
         }
     }
 
@@ -278,7 +295,7 @@ public class PlayerNetworkController : NetworkBehaviour
                     if (item && item.ItemID == _characterHandleWeapon.CurrentWeapon.WeaponID)
                     {
                         _inventoryWeapon.UnEquipItem(item, index);
-                        break;
+                        return;
                     }
                     index++;
                 }
@@ -286,34 +303,36 @@ public class PlayerNetworkController : NetworkBehaviour
         }
         else
         {
-            if (!_characterHandleWeapon.CurrentWeapon || weaponID != _characterHandleWeapon.CurrentWeapon.WeaponID)
+            if (_characterHandleWeapon.CurrentWeapon && _characterHandleWeapon.CurrentWeapon.WeaponID == weaponID)
             {
-                var index = 0;
-                foreach (InventoryItem item in _inventoryMain.Content)
+                return;
+            }
+               
+            var index = 0;
+            foreach (InventoryItem item in _inventoryMain.Content)
+            {
+                if (item && item.ItemID == weaponID)
                 {
-                    if (item && item.ItemID == weaponID)
+                    item.TargetEquipmentInventoryName = _characterInventory.WeaponInventoryName;
+                    _inventoryMain.EquipItem(item, index);
+                    if (_characterHandleWeapon.CurrentWeapon)
                     {
-                        item.TargetEquipmentInventoryName = _characterInventory.WeaponInventoryName;
-                        _inventoryMain.EquipItem(item, index);
-                        if (_characterHandleWeapon.CurrentWeapon)
+                        MMF_Player[] feedbackPlayers = _characterHandleWeapon.CurrentWeapon.GetComponentsInChildren<MMF_Player>(true);
+                        foreach (var feedbackPlayer in feedbackPlayers)
                         {
-                            MMF_Player[] feedbackPlayers = _characterHandleWeapon.CurrentWeapon.GetComponentsInChildren<MMF_Player>(true);
-                            foreach (var feedbackPlayer in feedbackPlayers)
+                            foreach (var feedback in feedbackPlayer.FeedbacksList)
                             {
-                                foreach (var feedback in feedbackPlayer.FeedbacksList)
+                                if (feedback.Label == "Flash" || feedback.Label == "Cinemachine Impulse")
                                 {
-                                    if (feedback.Label == "Flash" || feedback.Label == "Cinemachine Impulse")
-                                    {
-                                        feedback.Active = false;
-                                    }
+                                    feedback.Active = false;
                                 }
                             }
                         }
-                        
-                        break;
                     }
-                    index++;
+                        
+                    return;
                 }
+                index++;
             }
         }
     }
