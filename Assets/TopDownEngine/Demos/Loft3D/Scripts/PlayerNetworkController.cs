@@ -191,19 +191,25 @@ public class PlayerNetworkController : NetworkBehaviour
                 AutoFocus.FocusTargetID = 0;
             }
         } else {
-            foreach (var inventory in _inventoryMain.GetComponents<Inventory>())
+            if (_inventoryMain)
             {
-                if (inventory.PlayerID == _character.PlayerID)
+                foreach (var inventory in _inventoryMain.GetComponents<Inventory>())
                 {
-                    Destroy(inventory);
+                    if (inventory.PlayerID == _character.PlayerID)
+                    {
+                        Destroy(inventory);
+                    }
                 }
             }
 
-            foreach (var inventory in _inventoryWeapon.GetComponents<Inventory>())
+            if (_inventoryWeapon)
             {
-                if (inventory.PlayerID == _character.PlayerID)
+                foreach (var inventory in _inventoryWeapon.GetComponents<Inventory>())
                 {
-                    Destroy(inventory);
+                    if (inventory.PlayerID == _character.PlayerID)
+                    {
+                        Destroy(inventory);
+                    }
                 }
             }
 
