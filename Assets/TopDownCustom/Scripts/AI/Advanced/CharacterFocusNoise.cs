@@ -23,6 +23,12 @@ namespace MoreMountains.TopDownEngine
 		 
 		 [Tooltip("Maximum noise value")]
 		public float AINoiseAreaFactor;
+
+		protected override void Awake()
+		{
+			base.Awake();
+			FocusNoiseArea.FocusZoneCollider.enabled = false;
+		}
 		/*public NoiseQualifier[] NoisesQualifier;*/
 		
  
@@ -73,10 +79,12 @@ namespace MoreMountains.TopDownEngine
 			
 			if (_character.CharacterBrain.CurrentState.StateName == "Destroying")
 			{
+				FocusNoiseArea.FocusZoneCollider.enabled = true;
 				FocusNoiseArea.FocusZoneCollider.radius = AINoiseAreaFactor;
 			}
 			else
 			{
+				FocusNoiseArea.FocusZoneCollider.enabled = false;
 				FocusNoiseArea.FocusZoneCollider.radius = 0;
 			}
 		}
